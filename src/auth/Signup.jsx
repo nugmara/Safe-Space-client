@@ -1,77 +1,172 @@
 import { useState } from "react";
+import { signupService } from "../services/auth.services";
 
 function Signup() {
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
 
-  const avatars = [
-    "https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-1_yeuzft.webp",
-    "https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-2_jamxw0.webp",
-    "https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-3_zzrpeh.webp",
-    "https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357944/safe-space-app/Ice-Age-Avatars-4_nl5y36.webp",
-    "https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp",
-  ];
-
+  const handleUsername = (e) => setUsername(e.target.value);
+  const handleFirstName = (e) => setFirstName(e.target.value);
+  const handleLastName = (e) => setLastName(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
   const handleImage = (e) => {
-    setImage(e.target.value);
+      setImage(e.target.getAttribute("src"))
+      handleCloseWhenSelectingAnImage()
+
+  } 
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    const newUser = {
+      username,
+      firstName,
+      lastName,
+      email,
+      password,
+      image,
+    };
+    try {
+      await signupService(newUser);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleCloseWhenSelectingAnImage = (e) => {
+    e.preventDefault()
+    setImage(e.target.src)
+  }
   return (
     <div>
       <h1>Sign up</h1>
 
-      <form>
+      <form onSubmit={handleSignup}>
         <label>Username: </label>
         <input
           type="text"
           name="username"
-          value={undefined}
-          onChange={undefined}
+          value={username}
+          onChange={handleUsername}
         />
 
         <label>First Name: </label>
         <input
           type="text"
           name="firstName"
-          value={undefined}
-          onChange={undefined}
+          value={firstName}
+          onChange={handleFirstName}
         />
 
         <label>Last Name: </label>
         <input
           type="text"
           name="lastName"
-          value={undefined}
-          onChange={undefined}
+          value={lastName}
+          onChange={handleLastName}
         />
 
         <label>Email: </label>
-        <input
-          type="email"
-          name="email"
-          value={undefined}
-          onChange={undefined}
-        />
+        <input type="email" name="email" value={email} onChange={handleEmail} />
 
         <label>Password: </label>
         <input
           type="password"
           name="password"
-          value={undefined}
-          onChange={undefined}
+          value={password}
+          onChange={handlePassword}
         />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+        >
+          Select your avatar!
+        </button>
 
-        <select name="image" value={image} onChange={handleImage} style={{backgroundImage: `url(${image})`}}>
-          <option value="">Select an image</option>
-          {avatars.map((eachAvatar) => (
-            <option key={eachAvatar} value={eachAvatar} style={{backgroundImage: `url(${eachAvatar})`}}>
-              {/* <img
-                src={eachAvatar}
-                alt="ice-age-avatar"
-                width="100px"
-              />  */}
-             {eachAvatar}
-            </option>
-          ))}
-        </select>
+        <div
+          class="modal fade"
+          id="staticBackdrop"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                  Which you will be?
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <a href="" onClick={handleCloseWhenSelectingAnImage}>
+                  <img
+                    src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-1_yeuzft.webp"
+                    alt="ice-age"
+                    width="70px"
+                    onChange={handleImage}
+                  />
+                </a>
+                <a href="" onClick={handleCloseWhenSelectingAnImage}>
+                  <img
+                    src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-2_jamxw0.webp"
+                    alt="ice-age"
+                    width="70px"
+                    onChange={handleImage}
+                  />
+                </a>
+                <a href="" onClick={handleCloseWhenSelectingAnImage}>
+                  <img
+                    src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-3_zzrpeh.webp"
+                    alt="ice-age"
+                    width="70px"
+                    onChange={handleImage}
+                  />
+                </a>
+                <a href="" onClick={handleCloseWhenSelectingAnImage}>
+                  <img
+                    src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357944/safe-space-app/Ice-Age-Avatars-4_nl5y36.webp"
+                    alt="ice-age"
+                    width="70px"
+                    onChange={handleImage}
+                  />
+                </a>
+                <a href="" onClick={handleCloseWhenSelectingAnImage}>
+                  <img
+                    src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp"
+                    alt="ice-age"
+                    width="70px"
+                    onClick={() => handleImage("https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp")}
+                    onChange={handleImage}
+                  />
+                </a>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit">Signup</button>
       </form>
     </div>
   );

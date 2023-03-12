@@ -7,7 +7,7 @@ const signupService = (newUser) => {
 
 // login service
 const signinService = (userCredentials) => {
-  return service.post("/auth/singin"), userCredentials;
+  return service.post("/auth/signin",  userCredentials);
 };
 
 // verify service

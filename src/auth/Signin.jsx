@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import { signinService } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const navigate = useNavigate()
   const { authenticateUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +24,7 @@ function Signin() {
 
       authenticateUser();
       console.log("si vemos esto es porque el Token fue validado");
+      navigate("/home")
     } catch (error) {
       console.log(error)
     }

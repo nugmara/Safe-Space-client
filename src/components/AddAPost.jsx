@@ -1,6 +1,8 @@
 function AddAPost() {
   return (
-    <div>AddAPost</div>
+    <div>
+        
+    </div>
   )
 }
 

@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import SearchPage from "./pages/SearchPage"
 import Notifications from "./pages/Notifications"
 import Profile from "./pages/Profile"
+import IsPrivate from "./components/IsPrivate";
 
 
 function App() {
@@ -15,12 +16,14 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
+        
+        <Route path="/home" element={<IsPrivate> <Home /></IsPrivate>}/>
+        <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
+        <Route path="/notifications" element={<IsPrivate><Notifications /></IsPrivate>}/>
+        <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
+        
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>
-        <Route path="/home" element={<Home />}/>
-        <Route path="/search" element={<SearchPage />}/>
-        <Route path="/notifications" element={<Notifications />}/>
-        <Route path="/profile" element={<Profile />}/>
       </Routes>
     </div>
   );

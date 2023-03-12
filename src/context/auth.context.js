@@ -16,7 +16,7 @@ function AuthWrapper(props) {
   const authenticateUser = async () => {
     setIsFetching(true);
     try {
-      const response = verifyService();
+      const response = await verifyService();
       setIsLoggedIn(true);
       setLoggedUser(response.data);
       setIsFetching(false);

@@ -7,7 +7,6 @@ import { getAllPostsService, likeAPost } from "../services/post.services";
 function Home() {
   const [allPosts, setallPosts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
- 
 
   useEffect(() => {
     getData();
@@ -24,16 +23,16 @@ function Home() {
     }
   };
 
- const likingAPost = async(id) => {
-  try {
-    const response = await verifyService()
-    const userId = response.data.userId
-    await likeAPost(id, userId)
-    getData()
-  } catch (error) {
-    console.log(error)
-  }
- }
+  const likingAPost = async (id) => {
+    try {
+      const response = await verifyService();
+      const userId = response.data.userId;
+      await likeAPost(id, userId);
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (isFetching) {
     return <h3>Loading...</h3>;
   }
@@ -43,15 +42,14 @@ function Home() {
       {allPosts.map((eachPost) => {
         return (
           <div key={eachPost._id}>
-            <p >
+            <p>
               <Link to={`/post/${eachPost._id}`}>{eachPost.content}</Link>
             </p>
             <p>
-              by {eachPost.authorId} at {eachPost.time} with:
+              by {eachPost.username} at {eachPost.time} with:
               {eachPost.totalLikes} likes
-              
             </p>
-            
+
             <button onClick={() => likingAPost(eachPost._id)}>Like</button>
           </div>
         );

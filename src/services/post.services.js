@@ -1,4 +1,5 @@
 import service from "./config.services";
+import { getUserId } from "../services/auth.services";
 
 const getAllPostsService = () => {
   return service.get("/post")
@@ -16,4 +17,9 @@ const deleteAPost = (id) => {
   return service.delete(`/post/${id}`);
 };
 
-export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost };
+const likeAPost = async(id) => {
+  const userId = await getUserId()
+  return service.post(`/post/${id}/like`, {userId})
+}
+
+export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost, likeAPost };

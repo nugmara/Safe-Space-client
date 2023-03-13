@@ -7,7 +7,7 @@ const signupService = (newUser) => {
 
 // login service
 const signinService = (userCredentials) => {
-  return service.post("/auth/signin",  userCredentials);
+  return service.post("/auth/signin", userCredentials);
 };
 
 // verify service
@@ -16,4 +16,14 @@ const verifyService = () => {
   return service.get("/auth/verify");
 };
 
-export { signupService, signinService, verifyService };
+const getUserId = async () => {
+  try {
+    const response = await verifyService()
+    const userId = response.data._id
+    return userId
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { signupService, signinService, verifyService, getUserId };

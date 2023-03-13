@@ -3,10 +3,12 @@ import { createAPost } from "../services/post.services";
 
 function AddAPost(props) {
   const [content, setContent] = useState("")
+  const [authorId, setAuthorId] = useState();
   const handleSubmit = async(e) => {
     e.preventDefault()
     const newPost = {
       content,
+      authorId
     }
     try {
       await createAPost(newPost)

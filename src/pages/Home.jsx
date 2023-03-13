@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddAPost from "../components/AddAPost";
-import { getUserId, verifyService } from "../services/auth.services";
+import {  verifyService } from "../services/auth.services";
 import { getAllPostsService, likeAPost } from "../services/post.services";
 
 function Home() {

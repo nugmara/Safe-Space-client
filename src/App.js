@@ -11,6 +11,7 @@ import Profile from "./pages/Profile"
 import IsPrivate from "./components/IsPrivate";
 import AddAPost from "./components/AddAPost";
 import PostDetails from "./pages/PostDetails";
+import CommentsList from "./pages/CommentsList";
 
 
 function App() {

@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { createAPost } from "../services/post.services";
 
-
-
 function AddAPost(props) {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("")
   const handleSubmit = async(e) => {
     e.preventDefault()
     const newPost = {
-      content
+      content,
     }
     try {
-      const response = await createAPost(newPost)
+      await createAPost(newPost)
+      // getData()
     } catch (error) {
       console.log(error)
     }
   }
   return (
     <div>
-        
         <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
@@ -27,13 +25,13 @@ function AddAPost(props) {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <form onSubmit={undefined}>
+                <form>
                   <input type="text" name="content" placeholder="Put your thoughts on paper queen!" style={{width: "400px", height: "200px"}} value={content} onChange={((e) => setContent(e.target.value))}/>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Understood</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" className="btn btn-primary" onClick={handleSubmit}>Post</button>
               </div>
             </div>
           </div>

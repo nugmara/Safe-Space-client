@@ -9,6 +9,7 @@ import SearchPage from "./pages/SearchPage"
 import Notifications from "./pages/Notifications"
 import Profile from "./pages/Profile"
 import IsPrivate from "./components/IsPrivate";
+import AddAPost from "./components/AddAPost";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
         <Route path="/notifications" element={<IsPrivate><Notifications /></IsPrivate>}/>
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
+        <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
         
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>

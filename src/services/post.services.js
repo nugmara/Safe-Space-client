@@ -1,7 +1,7 @@
 import service from "./config.services";
 
 const getAllPostsService = () => {
-  return service.get("/post");
+  return service.get("/post")
 };
 
 const createAPost = (newPost) => {

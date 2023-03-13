@@ -21,6 +21,11 @@ function NavBar() {
         <NavLink to="/notifications">Notifications</NavLink>
         <br />
         <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/post">
+        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Add a post
+</button>
+        </NavLink>
         <button onClick={handleLogout}>Logout</button>
       </div>
     );

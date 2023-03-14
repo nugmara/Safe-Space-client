@@ -30,7 +30,7 @@ function NavBar() {
         <br />
         <NavLink to={`/notifications/${userId}`}>Notifications</NavLink>
         <br />
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to={`/profile/${userId}`}>Profile</NavLink>
         <NavLink to="/post">
         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Add a post

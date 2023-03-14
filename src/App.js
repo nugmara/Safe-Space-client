@@ -23,7 +23,7 @@ function App() {
         <Route path="/home" element={<IsPrivate> <Home /></IsPrivate>}/>
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
         <Route path="/notifications" element={<IsPrivate><Notifications /></IsPrivate>}/>
-        <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
+        <Route path="/profile/:id" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
         <Route path="/post/:id" element={<PostDetails />}/>
         <Route path="/notifications/:id" element={<Notifications/>}/>

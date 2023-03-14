@@ -21,6 +21,7 @@ function Notifications() {
     console.log(response.data)
     const filterTheNotifications = response.data.filter((notification) => notification.userId === userId)
     setNotification(filterTheNotifications)
+    console.log("que pasa",filterTheNotifications)
   }
 
 

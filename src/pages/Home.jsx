@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddAPost from "../components/AddAPost";
-import {  verifyService } from "../services/auth.services";
+import { verifyService, getUserId } from "../services/auth.services";
 import { getAllPostsService, likeAPost } from "../services/post.services";
+import {createANotification} from "../services/notifications.services"
+
+
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
+  const [isLikedNotification, setIsLikedNotification] = useState(false);
 
   useEffect(() => {
     getData();
@@ -25,10 +29,14 @@ function Home() {
 
   const likingAPost = async (id) => {
     try {
-      const response = await verifyService();
-      const userId = response.data.userId;
+      // // const response = await verifyService();
+      const userId = await getUserId()
+      // // const userId = response.data.userId;
+      console.log(userId)
       await likeAPost(id, userId);
+      await createANotification(id, userId )
       getData();
+      setIsLikedNotification(true)
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +57,6 @@ function Home() {
               by {eachPost.username} at {eachPost.time} with:
               {eachPost.totalLikes} likes
             </p>
-
             <button onClick={() => likingAPost(eachPost._id)}>Like</button>
           </div>
         );

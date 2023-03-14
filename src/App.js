@@ -11,7 +11,7 @@ import Profile from "./pages/Profile"
 import IsPrivate from "./components/IsPrivate";
 import AddAPost from "./components/AddAPost";
 import PostDetails from "./pages/PostDetails";
-import CommentsList from "./pages/CommentsList";
+import { useState } from "react";
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
         <Route path="/post/:id" element={<PostDetails />}/>
+        <Route path="/notifications/:id" element={<Notifications/>}/>
         
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>

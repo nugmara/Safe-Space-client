@@ -1,9 +1,19 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import { getUserId } from "../services/auth.services";
 
 function NavBar() {
   const navigate = useNavigate()
+  const [userId, setUserId] = useState("");
+  
+  useEffect(() => {
+    getData()
+  }, [])
+  const getData = async() => {
+    const userId = await getUserId()
+    setUserId(userId)
+  }
   const { isLoggedIn, authenticateUser } = useContext(AuthContext);
   const handleLogout = () => {
     localStorage.removeItem("authToken")
@@ -18,7 +28,7 @@ function NavBar() {
         <br />
         <NavLink to="/search">Search</NavLink>
         <br />
-        <NavLink to="/notifications">Notifications</NavLink>
+        <NavLink to={`/notifications/${userId}`}>Notifications</NavLink>
         <br />
         <NavLink to="/profile">Profile</NavLink>
         <NavLink to="/post">

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // de este servicio es donde se harán todas las llamadas de backend
 const service = axios.create({
-  baseURL: "http://localhost:5005/api",
+  baseURL: process.env.REACT_APP_SERVER_URL
 });
 
 // todas las llamadas de este servicio irán acompañadas del Token

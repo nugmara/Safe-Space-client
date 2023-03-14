@@ -3,14 +3,14 @@ import { useLocation, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getAllNotifications } from "../services/notifications.services";
 import { getDetailsFromAPost } from "../services/post.services";
+import { getUserId } from "../services/auth.services";
 
 function Notifications() {
   const [notification, setNotification] = useState([]);
   const params = useParams()
   const {id} = params
-  // const location = useLocation()
-  // const {postCreator} = location.state
-  // console.log(postCreator)
+  const userId = getUserId()
+
   console.log("hola que tal", id)
 
   useEffect(() => {
@@ -19,7 +19,8 @@ function Notifications() {
   const getData = async() => {
     const response = await getAllNotifications(id)
     console.log(response.data)
-    setNotification(response.data)
+    const filterTheNotifications = response.data.filter((notification) => notification.userId === userId)
+    setNotification(filterTheNotifications)
   }
 
 

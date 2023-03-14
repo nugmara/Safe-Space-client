@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddAPost from "../components/AddAPost";
 import { verifyService, getUserId } from "../services/auth.services";
-import { getAllPostsService, likeAPost } from "../services/post.services";
+import { getAllPostsService, getDetailsFromAPost, likeAPost } from "../services/post.services";
 import {createANotification} from "../services/notifications.services"
 
 
@@ -29,12 +29,12 @@ function Home() {
 
   const likingAPost = async (id) => {
     try {
-      // // const response = await verifyService();
       const userId = await getUserId()
-      // // const userId = response.data.userId;
-      console.log(userId)
+      const singlePostDetails = await getDetailsFromAPost(id)
+      const postCreator = singlePostDetails.data.authorId
+      console.log(postCreator)
       await likeAPost(id, userId);
-      await createANotification(id, userId )
+      await createANotification(id, userId, postCreator)
       getData();
       setIsLikedNotification(true)
     } catch (error) {

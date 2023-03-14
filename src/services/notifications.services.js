@@ -5,10 +5,11 @@ const getAllNotifications = (id) => {
     return service.get(`/notifications/${id}`)
 }
 
-const createANotification = async(id, userId) => {
+const createANotification = async(id, userId, postCreator ) => {
     return service.post(`/notifications/${id}`, {
         title: "New Like",
-        message: `User ${userId} liked your post`
+        message: `User ${userId} liked your post`,
+        postCreator: postCreator
     })
 }
 

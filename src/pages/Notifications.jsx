@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react"
+import { useLocation, useParams } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import { getAllNotifications } from "../services/notifications.services";
+import { getDetailsFromAPost } from "../services/post.services";
 
 function Notifications() {
   const [notification, setNotification] = useState([]);
   const params = useParams()
   const {id} = params
+  // const location = useLocation()
+  // const {postCreator} = location.state
+  // console.log(postCreator)
   console.log("hola que tal", id)
 
   useEffect(() => {

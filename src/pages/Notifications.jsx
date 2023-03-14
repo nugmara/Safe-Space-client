@@ -9,6 +9,7 @@ function Notifications() {
   const [notification, setNotification] = useState([]);
   const params = useParams()
   const {id} = params
+  console.log(id)
   const userId = getUserId()
 
   console.log("hola que tal", id)

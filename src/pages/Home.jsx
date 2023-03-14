@@ -31,10 +31,13 @@ function Home() {
     try {
       const userId = await getUserId()
       const singlePostDetails = await getDetailsFromAPost(id)
-      const postCreator = singlePostDetails.data.authorId
+      const postCreator = singlePostDetails.data.authorId._id
       console.log(postCreator)
       await likeAPost(id, userId);
-      await createANotification(id, userId, postCreator)
+      console.log(userId)
+      console.log("creating a notifaction")
+      const notificationCreation = await createANotification(id, userId, postCreator)
+      console.log("notifications", notificationCreation )
       getData();
       setIsLikedNotification(true)
     } catch (error) {
@@ -54,7 +57,7 @@ function Home() {
               <Link to={`/post/${eachPost._id}`}>{eachPost.content}</Link>
             </p>
             <p>
-              by {eachPost.username} at {eachPost.time} with:
+              by {eachPost.authorId.username} at {new Date(eachPost.time).toLocaleString()} with:
               {eachPost.totalLikes} likes
             </p>
             <button onClick={() => likingAPost(eachPost._id)}>Like</button>

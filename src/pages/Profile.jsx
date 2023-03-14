@@ -20,7 +20,7 @@ function Profile() {
       console.log(error);
     }
   };
-  {console.log(profile)}
+  // {console.log(profile)}
   return (
     <div>
       <h3>My profile</h3>

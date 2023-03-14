@@ -1,24 +1,29 @@
 import service from "./config.services";
 import { getUserId } from "../services/auth.services";
+import { AuthContext } from "../context/auth.context";
 
 const getAllNotifications = (id) => {
   return service.get(`/notifications/${id}`);
 };
 
 const createANotification = async (id, userId, postCreator) => {
+  console.log("creating the createANOtification")
   try {
-    if (userId === postCreator) {
-       return service.post(`/notifications/${id}`, {
+    console.log("Hola", postCreator)
+    console.log("hola", userId)
+    if (userId === postCreator._id) {
+       const response = await service.post(`/notifications/${id}`, {
         title: "New Like",
         message: `User ${userId} liked your post`,
       });
       
+      return response.data
+      console.log("is created",response)
     }
   } catch (error) {
     console.log(error);
   }
 };
-console.log(createANotification)
 
 const deleteANotification = (idNotification) => {
   return service.delete(`/notifications/${idNotification}`);

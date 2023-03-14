@@ -20,6 +20,7 @@ const getUserId = async () => {
   try {
     const response = await verifyService()
     const userId = response.data._id
+    // console.log(userId)
     return userId
   } catch (error) {
     console.log(error);

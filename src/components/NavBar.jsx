@@ -37,12 +37,6 @@ function NavBar() {
           <NavLink to="/home" className={checkActiveClass}>
             Home
           </NavLink>
-          <NavLink to="/search" className={checkActiveClass}>
-            Search
-          </NavLink>
-          <NavLink to="/chats" className={checkActiveClass}>
-            Chat
-          </NavLink>
           <NavDropdown title="Profile" id="basic-nav-dropdown" className="checkActiveClass nav-link nav-dropdown">
             <NavDropdown.Item href={`/profile/${userId}`} className={checkActiveClass}>
               My Profile
@@ -54,6 +48,12 @@ function NavBar() {
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={handleLogout} className={checkActiveClass}>Logout</NavDropdown.Item>
           </NavDropdown>
+          <NavLink to="/search" className={checkActiveClass}>
+            Search
+          </NavLink>
+          <NavLink to="/chats" className={checkActiveClass}>
+            Chat
+          </NavLink>
           
         </nav>
         <NavLink to="/post">

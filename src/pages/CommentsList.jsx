@@ -28,12 +28,13 @@ function CommentsList() {
  
   return (
     <div>
+    <h3>Comments</h3>
       {allComments.map((eachComment) => {
         return(
           <div key={eachComment._id}>
+            <p className="comments-username">@<span>{eachComment.author.username}</span> </p>
             <p>{eachComment.content}</p>
-            <p>{eachComment.author.username}</p>
-            <p>{new Date(eachComment.time).toLocaleString()}</p>
+            <p className="comments-date">at {new Date(eachComment.time).toLocaleString()}</p>
           </div>
         )
       })}

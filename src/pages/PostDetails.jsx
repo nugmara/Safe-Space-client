@@ -28,13 +28,6 @@ function PostDetails() {
       console.log(error);
     }
   };
-  const handleDelete = async () => {
-    try {
-      await deleteAPost(id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = await getUserId()
@@ -56,23 +49,26 @@ function PostDetails() {
       {isFetching ? (
         <h3>Loading...</h3>
       ) : (
-        <blockquote>
-          <p>{postDetail.authorId.username}</p>
+        <blockquote className="blockquote-post-details">
+        
+          <p className="post-details-username">@<span className="post-details-username">{postDetail.authorId.username}</span></p>
+          <div className="post-details-content">
           <p>{postDetail.content}</p>
-          <p>{postDetail.time}</p>
-          <p>{postDetail.totalLikes}</p>
-          <button onClick={handleDelete}>Remove</button>
+          </div>
+          <p className="post-detail-date">{new Date(postDetail.time).toLocaleString()}</p>
+          <p className="post-detail-likes">{postDetail.totalLikes}❤️</p>
           <hr />
           <CommentsList /> 
-          <form>
+          <form className="add-comments">
             <input
               type="text"
               name="comment"
               placeholder="Give your opinion!"
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              className="input-profile-details"
             />
-            <button onClick={handleSubmit}>Reply</button>
+            <button onClick={handleSubmit} className="profile-details-reply-button">Reply</button>
           </form>
         </blockquote>
       )}

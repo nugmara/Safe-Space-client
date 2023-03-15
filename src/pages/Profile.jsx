@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { followUser, unfollow } from "../services/following.services";
 import { getProfileDetailsService } from "../services/profile.services";
+import { deleteAPost } from "../services/post.services";
 import { getUserId } from "../services/auth.services";
 
 function Profile() {
@@ -10,6 +11,7 @@ function Profile() {
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
+  
 
   useEffect(() => {
     getData();
@@ -50,40 +52,57 @@ function Profile() {
       console.log(error);
     }
   };
-  // {console.log(profile)}
-  {
-    console.log(profile);
-  }
+    const handleDelete = async (id) => {
+    try {
+      await deleteAPost(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {isFetching ? (
         <h3>Loading...</h3>
       ) : (
         <div>
-          <div className="username-profile">
-            <h4>{profile.profileDetails.username}</h4>
+          <div className="profile-container">
+            <div className="profile-left">
+              <div className="username-profile">
+                <h4>
+                  <span>@</span>
+                  {profile.profileDetails.username}
+                </h4>
+              </div>
+              <div className="first-last-name">
+                <p>
+                  {profile.profileDetails.firstName}{" "}
+                  {profile.profileDetails.lastName}
+                </p>
+              </div>
+              <p className="followers-profile">Followers: {profile.profileDetails.totalFollowers}</p>
+            </div>
+            <div className="profile-right">
+              <img
+                src={profile.profileDetails.image}
+                alt="profile-picture"
+                width="150px"
+                className="image-profile"
+              />
+            </div>
           </div>
-          <div className="first-last-name">
-            <p>
-              {profile.profileDetails.firstName}{" "}
-              {profile.profileDetails.lastName}
-            </p>
-          </div>
-          <p>{profile.profileDetails.description}</p>
-          <img
-            src={profile.profileDetails.image}
-            alt="profile-picture"
-            width="150px"
-            className="image-profile"
-          />
-          <p>{profile.profileDetails.description}</p>
-          <p>{profile.profileDetails.totalFollowers}</p>
           {profile.postOfTheUser.map((eachPost) => {
             return (
-              <blockquote key={eachPost._id}>
-                <p>{eachPost.content}</p>
-                <p>{new Date(eachPost.time).toLocaleString()}</p>
-                <p>{eachPost.totalLikes}❤️</p>
+              <blockquote key={eachPost._id} className="profile-blockquote">
+              <div className="profile-container-wrapper">
+                <p className="profile-content">{eachPost.content}</p>
+                <p className="profile-date">{new Date(eachPost.time).toLocaleString()}</p>
+              </div>
+              <div className="profile-details-container">
+                <p className="profile-details-likes">{eachPost.totalLikes}❤️</p>
+                <button onClick={() => handleDelete(eachPost._id)} className="profile-details-button-remove">Remove</button>
+
+              </div>
               </blockquote>
             );
           })}

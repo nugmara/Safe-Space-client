@@ -48,7 +48,7 @@ function SearchPage() {
     <div>
       <input
         type="text"
-        placeholder="Take a look for other profiles!"
+        placeholder="🔎  Search for users!"
         name="search"
         value={searchUsers}
         onChange={handleSearchInput}

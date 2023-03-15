@@ -60,12 +60,12 @@ function Home() {
       {allPosts.map((eachPost) => {
         return (
           <div key={eachPost._id} className="home-page">
-              <blockquote>
+              <blockquote className="blockquote-home">
                 <div className="home-page-date">
                 <span>{new Date(eachPost.time).toLocaleString()}</span>
                 </div>
+                <p className="post-username">@<span>{eachPost.authorId.username}</span></p>
             <Link to={`/post/${eachPost._id}`} className="link-post">
-                <p className="post-username">{eachPost.authorId.username}</p>
                 <p>{eachPost.content}</p>
                 <br />
             </Link>

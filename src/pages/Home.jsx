@@ -55,7 +55,7 @@ function Home() {
   return (
     <div>
       <h3>
-        <img src="../../safe-space-logo.png" alt="" />
+        <img src="../../mind-safe-space-logo.png" alt="" />
       </h3>
       {allPosts.map((eachPost) => {
         return (

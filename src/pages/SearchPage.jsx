@@ -31,7 +31,7 @@ function SearchPage() {
   };
   useEffect(() => {
     getData();
-  });
+  }, []);
   const getData = async () => {
     try {
       const response = await searchUsersService()
@@ -46,7 +46,6 @@ function SearchPage() {
   }
   return (
     <div>
-      <label htmlFor="search">Search users</label>
       <input
         type="text"
         placeholder="Take a look for other profiles!"

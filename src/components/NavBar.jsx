@@ -48,8 +48,13 @@ function NavBar() {
               My Profile
             </NavDropdown.Item>
             <NavDropdown.Divider />
+            <NavDropdown.Item className={checkActiveClass} href={`/profile/${userId}/edit`}>
+            Settings
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
             <NavDropdown.Item onClick={handleLogout} className={checkActiveClass}>Logout</NavDropdown.Item>
           </NavDropdown>
+          
         </nav>
         <NavLink to="/post">
           <button
@@ -61,7 +66,9 @@ function NavBar() {
             Add a post
           </button>
         </NavLink>
+        
         {/* <button onClick={handleLogout}>Logout</button> */}
+      
       </div>
     );
   } else {
@@ -75,7 +82,9 @@ function NavBar() {
             Sign in
           </NavLink>
         </nav>
+        
       </div>
+      
     );
   }
 }

@@ -5,8 +5,8 @@ const getProfileDetailsService = (id) => {
     return service.get(`/profile/${id}`)
 }
 
-const updateProfileService = (id) => {
-    return service.patch(`/profile/${id}/edit`)
+const updateProfileService = (id, updateProfile) => {
+    return service.patch(`/profile/${id}/edit`, updateProfile)
 }
 
 export {

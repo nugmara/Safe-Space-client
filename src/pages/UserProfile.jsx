@@ -34,7 +34,7 @@ function UserPage() {
   //     console.log(error)
   //   }
   // }
-
+{console.log(profile)}
   return (
     <div>
       <h3>User Profile</h3>
@@ -45,6 +45,7 @@ function UserPage() {
           <h4>{profile.profileDetails.username}</h4>
           <p>{profile.profileDetails.firstName}</p>
           <p>{profile.profileDetails.lastName}</p>
+          <p>{profile.profileDetails.description}</p>
           <img
             src={profile.profileDetails.image}
             alt="profile-picture"

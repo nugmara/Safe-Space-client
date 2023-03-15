@@ -28,7 +28,7 @@ function AddAPost(props) {
               </div>
               <div className="modal-body">
                 <form>
-                  <input type="text" name="content" placeholder="Put your thoughts on paper queen!" style={{width: "400px", height: "200px"}} value={content} onChange={((e) => setContent(e.target.value))}/>
+                  <input type="textarea" name="content" placeholder="Put your thoughts on paper queen!" style={{width: "400px", height: "200px"}} value={content} onChange={((e) => setContent(e.target.value))}/>
                 </form>
               </div>
               <div className="modal-footer">

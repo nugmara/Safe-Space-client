@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getUserId } from "../services/auth.services";
-import { getAllPostsService, getDetailsFromAPost, likeAPost } from "../services/post.services";
-import {createANotification} from "../services/notifications.services"
+import {
+  getAllPostsService,
+  getDetailsFromAPost,
+  likeAPost,
+} from "../services/post.services";
+import { createANotification } from "../services/notifications.services";
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
@@ -26,17 +30,21 @@ function Home() {
 
   const likingAPost = async (id) => {
     try {
-      const userId = await getUserId()
-      const singlePostDetails = await getDetailsFromAPost(id)
-      const postCreator = singlePostDetails.data.authorId._id
-      console.log(postCreator)
+      const userId = await getUserId();
+      const singlePostDetails = await getDetailsFromAPost(id);
+      const postCreator = singlePostDetails.data.authorId._id;
+      console.log(postCreator);
       await likeAPost(id, userId);
-      console.log(userId)
-      console.log("creating a notifaction")
-      const notificationCreation = await createANotification(id, userId, postCreator)
-      console.log("notifications", notificationCreation )
+      console.log(userId);
+      console.log("creating a notifaction");
+      const notificationCreation = await createANotification(
+        id,
+        userId,
+        postCreator
+      );
+      console.log("notifications", notificationCreation);
       getData();
-      setIsLikedNotification(true)
+      setIsLikedNotification(true);
     } catch (error) {
       console.log(error);
     }
@@ -46,18 +54,34 @@ function Home() {
   }
   return (
     <div>
-      <h3>Logo</h3>
+      <h3>
+        <img src="../../safe-space-logo.png" alt="" />
+      </h3>
       {allPosts.map((eachPost) => {
         return (
-          <div key={eachPost._id}>
-            <p>
-              <Link to={`/post/${eachPost._id}`}>{eachPost.content}</Link>
-            </p>
-            <p>
-              by {eachPost.authorId.username} at {new Date(eachPost.time).toLocaleString()} with:
-              {eachPost.totalLikes} likes
-            </p>
-            <button onClick={() => likingAPost(eachPost._id)}>Like</button>
+          <div key={eachPost._id} className="home-page">
+              <blockquote>
+                <div className="home-page-date">
+                <span>{new Date(eachPost.time).toLocaleString()}</span>
+                </div>
+            <Link to={`/post/${eachPost._id}`} className="link-post">
+                <p className="post-username">{eachPost.authorId.username}</p>
+                <p>{eachPost.content}</p>
+                <br />
+            </Link>
+                <div  className="like-post">
+                <p>
+                  {eachPost.totalLikes}
+                  <button
+                    onClick={() => likingAPost(eachPost._id)}
+                    className="heart-button"
+                  >
+                    ❤️
+                  </button>
+                </p>
+
+                </div>
+              </blockquote>
           </div>
         );
       })}

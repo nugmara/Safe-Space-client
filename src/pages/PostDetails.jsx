@@ -56,9 +56,9 @@ function PostDetails() {
       {isFetching ? (
         <h3>Loading...</h3>
       ) : (
-        <div>
+        <blockquote>
+          <p>{postDetail.authorId.username}</p>
           <p>{postDetail.content}</p>
-          <p>{postDetail.username}</p>
           <p>{postDetail.time}</p>
           <p>{postDetail.totalLikes}</p>
           <button onClick={handleDelete}>Remove</button>
@@ -74,7 +74,7 @@ function PostDetails() {
             />
             <button onClick={handleSubmit}>Reply</button>
           </form>
-        </div>
+        </blockquote>
       )}
     </div>
   );

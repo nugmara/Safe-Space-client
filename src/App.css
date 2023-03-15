@@ -1,12 +1,151 @@
-.App {
-  text-align: center;
+@media (min-width: 390px) and (max-width: 844px) {
+  :root {
+    --text-color: hsla(210, 50%, 85%, 1);
+    --shadow-color: hsla(210, 40%, 52%, 0.4);
+    --btn-color: hsl(210, 80%, 42%);
+    --bg-color: #141218;
+  }
+  .App {
+    text-align: center;
+  }
+  /* NAVBAR */
+  nav {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  nav a {
+    color: black;
+    font-weight: bold;
+    padding: 20px;
+  }
+  nav a:hover {
+    background-color: blanchedalmond;
+    color: black;
+    border-radius: 70px;
+  }
+  nav a.nav-inactive {
+    text-decoration: none;
+  }
+
+  nav a.nav-active {
+    background-color: antiquewhite;
+    color: lightcoral;
+    text-decoration: none;
+  }
+  .nav-dropdown .dropdown-toggle {
+    color: black;
+    font-weight: bold;
+    padding: 20px;
+    text-decoration: none;
+  }
+
+  .nav-dropdown .dropdown-toggle:hover {
+    background-color: #a9a9a9;
+    color: black;
+  }
+
+  .nav-dropdown .dropdown-toggle.active {
+    background-color: lightgray;
+    color: gray;
+  }
+
+  /* BOTONES */
+  .btn-add-post {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1em 2em;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: #333;
+    border: 2px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+
+  .btn-add-post:hover{
+    color: #fff;
+    background: #ff003b;
+    transition: all .35s;
+  }
+  /* HOME */
+  .post-username {
+    font-weight: bold;
+  }
+
+  .like-post {
+    text-align: end;
+  }
+
+  .heart-button {
+    border: none;
+    background-color: transparent;
+  }
+
+  .home-page-date {
+    text-align: end;
+  }
+
+  /* POSTS */
+  blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    text-align: start;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+  .link-post {
+    text-decoration: none;
+    color: black;
+  }
+  .link-post:hover {
+    color: lightcoral;
+  }
+
+  /* Search Page */
+  .search-input {
+    width: 80%;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+    padding: 10px;
+  }
+
+  .search-btn {
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+    padding: 10px;
+  }
+
+  .search-users {
+    text-decoration: none;
+    list-style: none;
+    color:#333;
+    border: 1px solid black;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 40px;
+  }
+
+  .text-decoration {
+    text-decoration: none;
+  }
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

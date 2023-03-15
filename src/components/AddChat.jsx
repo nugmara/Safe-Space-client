@@ -8,9 +8,9 @@ import { getUserId } from "../services/auth.services";
 
 function AddChat({receiver}) {
   const [message, setMessage] = useState("");
-  const [allMessages, setAllMessages] = useState(null);
+  const [receiverId, setReceiverId] = useState("");
   const {id} = useParams()
-
+console.log(id)
   const handlechange = (e) => {
     setMessage(e.target.value)
   }
@@ -21,7 +21,7 @@ function AddChat({receiver}) {
     try {
       const response = await createAConversationService(id, {
         sender: userId,
-        receiver: id,
+        receiver,
         message
       })
       console.log(response)

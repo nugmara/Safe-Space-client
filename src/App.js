@@ -12,6 +12,7 @@ import IsPrivate from "./components/IsPrivate";
 import AddAPost from "./components/AddAPost";
 import PostDetails from "./pages/PostDetails";
 import Chat from "./components/Chat"
+import UserProfile from "./pages/UserProfile"
 import { useState } from "react";
 import AddChat from "./components/AddChat";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
         <Route path="/notifications" element={<IsPrivate><Notifications /></IsPrivate>}/>
         <Route path="/profile/:id" element={<IsPrivate><Profile /></IsPrivate>}/>
+        <Route path="/userProfile/:id" element={<IsPrivate><UserProfile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
         <Route path="/chats" element={<Chat />}>
           <Route path="/chats/:id" element={<AddChat />}/>

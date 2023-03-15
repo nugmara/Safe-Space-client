@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { followUser, unfollow } from "../services/following.services";
 import { getProfileDetailsService } from "../services/profile.services";
+import { followUser, unfollow } from "../services/following.services";
 
-function Profile() {
+function UserPage() {
   const params = useParams();
   const { id } = params;
   const [profile, setProfile] = useState(null);
@@ -13,46 +13,31 @@ function Profile() {
   useEffect(() => {
     getData();
   }, []);
+
   const getData = async () => {
     try {
       const response = await getProfileDetailsService(id);
       setProfile(response.data);
-      setIsFollowing(response.data.isFollowing)
       setIsFetching(false);
     } catch (error) {
       console.log(error);
     }
   };
-  const handleFollow = async() => {
-    try {
-      if(!isFollowing) {
-        await followUser(id)
-        setIsFollowing(true)
-        setProfile((refreshProfile) => ({
-          profileDetails: {
-            ...refreshProfile.profileDetails,
-            totalFollowers: refreshProfile.profileDetails.totalFollowers + 1,
-          }
-        }))
-      } else {
-        await unfollow(id)
-        setIsFollowing(false)
-        setProfile((refreshProfile) => ({
-          ...refreshProfile,
-          profileDetails: {
-            ...refreshProfile.profileDetails,
-            totalFollowers: refreshProfile.profileDetails.totalFollowers - 1,
-          }
-        }))
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  // {console.log(profile)}
+
+  // const handleFollowUser =async () => {
+  //   try {
+  //     if(!isFollowing){
+  //       await followUser(id)
+  //       return setIsFollowing(true)
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
   return (
     <div>
-      <h3>My profile</h3>
+      <h3>User Profile</h3>
       {isFetching ? (
         <h3>Loading...</h3>
       ) : (
@@ -67,14 +52,16 @@ function Profile() {
           />
           <p>{profile.profileDetails.description}</p>
           <p>{profile.profileDetails.totalFollowers}</p>
+          <button onClick={undefined}>{isFollowing ? "Unfollow" : "Follow"}</button>
+          <hr />
           {profile.postOfTheUser.map((eachPost) => {
             return (
-          <blockquote key={eachPost._id}>
-            <p>{eachPost.content}</p>
-            <p>{new Date(eachPost.time).toLocaleString()}</p>
-            <p>{eachPost.totalLikes}❤️</p>
-          </blockquote>
-            )
+              <div key={eachPost._id}>
+                <p>{eachPost.content}</p>
+                <p>{new Date(eachPost.time).toLocaleString()}</p>
+                <p>{eachPost.totalLikes}❤️</p>
+              </div>
+            );
           })}
         </div>
       )}
@@ -82,4 +69,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default UserPage;

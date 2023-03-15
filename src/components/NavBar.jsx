@@ -2,54 +2,79 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
+import { NavDropdown } from "react-bootstrap";
 
 function NavBar() {
-  const navigate = useNavigate()
+  const checkActiveClass = (navInfo) => {
+    console.log(navInfo);
+    if (navInfo.isActive === true) {
+      return "nav-active";
+    } else {
+      return "nav-inactive";
+    }
+  };
+
+  const navigate = useNavigate();
   const [userId, setUserId] = useState("");
-  
   useEffect(() => {
-    getData()
-  }, [])
-  const getData = async() => {
-    const userId = await getUserId()
-    setUserId(userId)
-  }
+    getData();
+  }, []);
+  const getData = async () => {
+    const userId = await getUserId();
+    setUserId(userId);
+  };
   const { isLoggedIn, authenticateUser } = useContext(AuthContext);
   const handleLogout = () => {
-    localStorage.removeItem("authToken")
-    authenticateUser()
-    navigate("/home")
-  }
+    localStorage.removeItem("authToken");
+    authenticateUser();
+    navigate("/home");
+  };
 
   if (isLoggedIn === true) {
     return (
-      <div>
-        <NavLink to="/home">Home</NavLink>
-        <br />
-        <NavLink to="/search">Search</NavLink>
-        <br />
-        <NavLink to={`/notifications/${userId}`}>Notifications</NavLink>
-        <br />
-        <NavLink to="/chats">Chat</NavLink>
-        <br />
-        <NavLink to={`/profile/${userId}`}>Profile</NavLink>
-        <br />
+      <div className="nav-page">
+        <nav>
+          <NavLink to="/home" className={checkActiveClass}>
+            Home
+          </NavLink>
+          <NavLink to="/search" className={checkActiveClass}>
+            Search
+          </NavLink>
+          <NavLink to="/chats" className={checkActiveClass}>
+            Chat
+          </NavLink>
+          <NavDropdown title="Profile" id="basic-nav-dropdown" className="checkActiveClass nav-link nav-dropdown">
+            <NavDropdown.Item href={`/profile/${userId}`} className={checkActiveClass}>
+              My Profile
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={handleLogout} className={checkActiveClass}>Logout</NavDropdown.Item>
+          </NavDropdown>
+        </nav>
         <NavLink to="/post">
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Add a post
-</button>
-<br />
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            className="btn-add-post"
+          >
+            Add a post
+          </button>
         </NavLink>
-        <button onClick={handleLogout}>Logout</button>
+        {/* <button onClick={handleLogout}>Logout</button> */}
       </div>
     );
   } else {
     return (
       <div>
-        <NavLink to="/signup">Sign Up</NavLink>
-        <br />
-        <NavLink to="/signin">Sign in</NavLink>
-        <br />
+        <nav>
+          <NavLink to="/signup" className={checkActiveClass}>
+            Sign Up
+          </NavLink>
+          <NavLink to="/signin" className={checkActiveClass}>
+            Sign in
+          </NavLink>
+        </nav>
       </div>
     );
   }

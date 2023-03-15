@@ -31,11 +31,14 @@ const deleteAChatService = (id) => {
   return service.delete(`/chats/${id}`);
 };
 
-
+const refreshChatService = (id, updateChat) => {
+  return service.patch(`/chats/${id}`, updateChat);
+};
 
 export {
   getFriendsChatService,
   createAConversationService,
   oneToOneChatService,
   deleteAChatService,
+  refreshChatService,
 };

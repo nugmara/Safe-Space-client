@@ -30,11 +30,15 @@ function NavBar() {
         <br />
         <NavLink to={`/notifications/${userId}`}>Notifications</NavLink>
         <br />
+        <NavLink to="/chats">Chat</NavLink>
+        <br />
         <NavLink to={`/profile/${userId}`}>Profile</NavLink>
+        <br />
         <NavLink to="/post">
         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Add a post
 </button>
+<br />
         </NavLink>
         <button onClick={handleLogout}>Logout</button>
       </div>

@@ -1,5 +1,5 @@
 import service from "./config.services";
-import { getUserId } from "../services/auth.services";
+
 
 const getProfileDetailsService = (id) => {
     return service.get(`/profile/${id}`)

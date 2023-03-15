@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddAPost from "../components/AddAPost";
-import { verifyService, getUserId } from "../services/auth.services";
+import { getUserId } from "../services/auth.services";
 import { getAllPostsService, getDetailsFromAPost, likeAPost } from "../services/post.services";
 import {createANotification} from "../services/notifications.services"
-
-
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);

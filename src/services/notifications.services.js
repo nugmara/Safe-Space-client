@@ -17,8 +17,8 @@ const createANotification = async (id, userId, postCreator) => {
         message: `User ${userId} liked your post`,
       });
       
-      return response.data
       console.log("is created",response)
+      return response.data
     }
   } catch (error) {
     console.log(error);

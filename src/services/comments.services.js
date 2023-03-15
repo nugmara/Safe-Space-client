@@ -7,8 +7,8 @@ const getAllComments = (id) => {
 const createAComment = async(id, newComment) => {
   try {
     const response = service.post(`/post/${id}/comments`, newComment)
-    console.log(response.data)
-    return response.data
+    console.log(response)
+    return response
   } catch (error) {
     console.log(error)
   }

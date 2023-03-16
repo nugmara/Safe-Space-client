@@ -1,44 +1,20 @@
 import service from "./config.services";
 import { getUserId } from "../services/auth.services";
 
-const getFriendsChatService = async() => {
-  try {
-    return service.get(`/chats/friends`);
-    
-  } catch (error) {
-    console.log(error)
-  }
-};
+const getListOfAllChatServices = async() => {
+  return service.get("/chats")
+}
 
-const createAConversationService = async (id, newChat) => {
-  try {
-    const response = await service.post(`chats/${id}`, {
-      sender: newChat.sender,
-      receiver: newChat.receiver,
-      message: newChat.message,
-    });
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const getASpecifiChatService = (id) => {
+  return service.get(`/chats/${id}`)
+}
 
-const oneToOneChatService = (id) => {
-  return service.get(`/chats/${id}`);
-};
-
-const deleteAChatService = (id) => {
-  return service.delete(`/chats/${id}`);
-};
-
-const refreshChatService = (id, updateChat) => {
-  return service.patch(`/chats/${id}`, updateChat);
-};
+const createAChatService = (newChat) => {
+  return service.post("/createChat", newChat)
+}
 
 export {
-  getFriendsChatService,
-  createAConversationService,
-  oneToOneChatService,
-  deleteAChatService,
-  refreshChatService,
-};
+  getListOfAllChatServices,
+  getASpecifiChatService,
+  createAChatService
+}

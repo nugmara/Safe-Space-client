@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { followUser, unfollow } from "../services/following.services";
+import { followUser } from "../services/following.services";
 import { getProfileDetailsService } from "../services/profile.services";
 import { deleteAPost } from "../services/post.services";
 import { getUserId } from "../services/auth.services";
@@ -26,32 +26,32 @@ function Profile() {
       console.log(error);
     }
   };
-  const handleFollow = async () => {
-    try {
-      if (!isFollowing) {
-        await followUser(id);
-        setIsFollowing(true);
-        setProfile((refreshProfile) => ({
-          profileDetails: {
-            ...refreshProfile.profileDetails,
-            totalFollowers: refreshProfile.profileDetails.totalFollowers + 1,
-          },
-        }));
-      } else {
-        await unfollow(id);
-        setIsFollowing(false);
-        setProfile((refreshProfile) => ({
-          ...refreshProfile,
-          profileDetails: {
-            ...refreshProfile.profileDetails,
-            totalFollowers: refreshProfile.profileDetails.totalFollowers - 1,
-          },
-        }));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleFollow = async () => {
+  //   try {
+  //     if (!isFollowing) {
+  //       await followUser(id);
+  //       setIsFollowing(true);
+  //       setProfile((refreshProfile) => ({
+  //         profileDetails: {
+  //           ...refreshProfile.profileDetails,
+  //           totalFollowers: refreshProfile.profileDetails.totalFollowers + 1,
+  //         },
+  //       }));
+  //     } else {
+  //       await unfollow(id);
+  //       setIsFollowing(false);
+  //       setProfile((refreshProfile) => ({
+  //         ...refreshProfile,
+  //         profileDetails: {
+  //           ...refreshProfile.profileDetails,
+  //           totalFollowers: refreshProfile.profileDetails.totalFollowers - 1,
+  //         },
+  //       }));
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
     const handleDelete = async (id) => {
     try {
       await deleteAPost(id);

@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProfileDetailsService } from "../services/profile.services";
-import { followUser, unfollow } from "../services/following.services";
+import { followUser } from "../services/following.services";
 
 function UserPage() {
   const params = useParams();
   const { id } = params;
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
-  const [isFollowing, setIsFollowing] = useState(false);
-
+  const [areFollowingEachOther, setAreFollowingEachOther] = useState(false);
+  const [followUsers, setFollowUsers] = useState(false);
   useEffect(() => {
     getData();
-  }, []);
+  }, [id]);
 
   const getData = async () => {
     try {
@@ -24,19 +24,15 @@ function UserPage() {
     }
   };
 
-  // const handleFollowUser =async () => {
-  //   try {
-  //     if(!isFollowing){
-  //       await followUser(id)
-  //       return setIsFollowing(true)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  {
-    console.log(profile);
+  const followNewUser = async() => {
+    try {
+      await followUser(id)
+      setAreFollowingEachOther(true)
+    } catch (error) {
+      console.log(error)
+    }
   }
+ 
   return (
     <div>
       {isFetching ? (
@@ -45,22 +41,24 @@ function UserPage() {
         <div>
           <div className="profile-container">
             <div className="profile-left">
-              <div className="username-profile">
+              <div className="username-profile-another-user">
                 <h4>
                   <span>@</span>
                   {profile.profileDetails.username}
                 </h4>
               </div>
-              <div className="first-last-name">
+              <div className="first-last-name-another-user">
                 <p>
                   {profile.profileDetails.firstName}{" "}
                   {profile.profileDetails.lastName}
                 </p>
               </div>
-              <p className="followers-profile">
+              <p className="followers-profile-another-user">
                 Followers: {profile.profileDetails.totalFollowers}
               </p>
-              <button className="follow-button">Follow</button>
+              {areFollowingEachOther ? null : (
+              <button className="follow-button" onClick={followNewUser}>Follow</button>
+              )}
             </div>
             <div className="profile-right">
               <img

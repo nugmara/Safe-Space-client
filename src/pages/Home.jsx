@@ -53,7 +53,7 @@ function Home() {
     return <h3>Loading...</h3>;
   }
   return (
-    <div>
+    <div className="home-container">
       <h3>
         <img src="../../mind-safe-space-logo.png" alt="" />
       </h3>

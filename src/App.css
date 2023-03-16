@@ -12,10 +12,11 @@
     display: flex;
     background-color: #e5ede8;
     justify-content: space-evenly;
-    margin-bottom: 20px;
+    margin-top: 20px;
     position: fixed;
-    bottom: 0px;
-    margin-bottom: 0px;
+    z-index: 10;
+    top: 0px;
+    margin-top: 0px;
     width: 100%;
   }
   nav a {
@@ -59,28 +60,56 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .profile-left {
     flex: 1;
   }
   .username-profile {
     position: absolute;
+    margin-top: 70px;
     top: 5%;
-    left: 5%;
+    left: 7%;
+    color:#1aaae2;
+  }
+  .username-profile-another-user {
+    position: absolute;
+    margin-top: 50px;
+    top: 5%;
+    left: 7%;
+    color:#1aaae2;
   }
   .first-last-name {
     position: absolute;
+    font-weight: bold;
+    margin-top: 70px;
     top: 10%;
-    left: 5%;
+    left: 7%;
+  }
+  .first-last-name-another-user {
+    position: absolute;
+    font-weight: bold;
+    margin-top: 50px;
+    top: 10%;
+    left: 7%;
   }
   .image-profile {
-    margin-top: 20px;
+    margin-top: 2px;
     margin-right: 50px;
   }
   .followers-profile {
     position: absolute;
     top: 15%;
-    left: 5%;
+    left: 7%;
+    margin-top: 70px;
+  }
+  .followers-profile-another-user {
+    position: absolute;
+    top: 15%;
+    left: 7%;
+    margin-top: 50px;
   }
   .profile-blockquote {
     display: flex;
@@ -115,6 +144,9 @@
   }
 
   /* HOME */
+  .home-container {
+    margin-top: 70px;
+  }
   .post-username {
     font-weight: bold;
     color: #1aaae2;
@@ -163,6 +195,7 @@
     border-top-right-radius: 15px 255px;
     padding: 10px;
     margin-top: 20px;
+    margin-top: 80px;
   }
 
   .search-btn {
@@ -190,7 +223,7 @@
 
   /* POST DETAILS */
   .blockquote-post-details {
-    margin-top: 40px;
+    margin-top: 100px;
     margin-bottom: 100px;
     margin-left: 50px;
     margin-right: 50px;
@@ -202,8 +235,9 @@
 
   .post-detail-date {
     position: absolute;
-    top: 7%;
+    top: 15%;
     left: 55%;
+    z-index: 5;
   }
   .post-detail-likes {
     text-align: end;
@@ -227,7 +261,7 @@
   /* BOTONES */
   .btn-add-post {
     position: fixed;
-    bottom: 100px;
+    bottom: 20px;
     right: 20px;
     font-size: 1rem;
     font-weight: bold;
@@ -252,8 +286,8 @@
 
   .follow-button {
     position: absolute;
-    top: 20%;
-    left: 5%;
+    top: 27%;
+    left: 7%;
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;

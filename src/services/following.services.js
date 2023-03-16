@@ -2,13 +2,9 @@ import service from "./config.services";
 import { getUserId } from "../services/auth.services";
 
 const followUser = (id) => {
-    return service.post(`/${id}`)
+    console.log(id)
+    return service.patch(`/userProfile/${id}/follow`)
 }
-
-const unfollow = (id) => {
-    return service.delete(`/${id}/unfollow`)
-}
-
 export {
-    followUser, unfollow
+    followUser
 }

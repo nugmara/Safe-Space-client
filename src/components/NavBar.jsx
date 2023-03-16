@@ -37,24 +37,38 @@ function NavBar() {
           <NavLink to="/home" className={checkActiveClass}>
             Home
           </NavLink>
-          <NavDropdown title="Profile" id="basic-nav-dropdown" className="checkActiveClass nav-link nav-dropdown">
-            <NavDropdown.Item href={`/profile/${userId}`} className={checkActiveClass}>
+          <NavDropdown
+            title="Profile"
+            id="basic-nav-dropdown"
+            className="checkActiveClass nav-link nav-dropdown"
+          >
+            <NavDropdown.Item
+              href={`/profile/${userId}`}
+              className={checkActiveClass}
+            >
               My Profile
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item className={checkActiveClass} href={`/profile/${userId}/edit`}>
-            Settings
+            <NavDropdown.Item
+              className={checkActiveClass}
+              href={`/profile/${userId}/edit`}
+            >
+              Settings
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item onClick={handleLogout} className={checkActiveClass}>Logout</NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={handleLogout}
+              className={checkActiveClass}
+            >
+              Logout
+            </NavDropdown.Item>
           </NavDropdown>
           <NavLink to="/search" className={checkActiveClass}>
             Search
           </NavLink>
-          <NavLink to="/chats" className={checkActiveClass}>
-            Chat
+          <NavLink to="/information/help" className={checkActiveClass}>
+            Help Center
           </NavLink>
-          
         </nav>
         <NavLink to="/post">
           <button
@@ -66,9 +80,6 @@ function NavBar() {
             Add a post
           </button>
         </NavLink>
-        
-        {/* <button onClick={handleLogout}>Logout</button> */}
-      
       </div>
     );
   } else {
@@ -82,9 +93,7 @@ function NavBar() {
             Sign in
           </NavLink>
         </nav>
-        
       </div>
-      
     );
   }
 }

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { signupService } from "../services/auth.services";
+import Select from "react-select";
 
 function Signup() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -33,8 +34,8 @@ function Signup() {
     };
     try {
       const response = await signupService(newUser);
-      navigate("/signin")
-      console.log(response)
+      navigate("/signin");
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -44,62 +45,131 @@ function Signup() {
     e.preventDefault();
     setImage(e.target.src);
   };
-  return (
-    <div>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSignup}>
-        <label>Username: </label>
-        <input type="text" name="username" value={username} onChange={handleUsername}/>
-        <label>First Name: </label>
-        <input type="text" name="firstName" value={firstName} onChange={handleFirstName}/>
-
-        <label>Last Name: </label>
-        <input type="text" name="lastName" value={lastName} onChange={handleLastName}/>
-
-        <label>Email: </label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password: </label>
-        <input type="password" name="password" value={password} onChange={handlePassword}
-        />
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Select your avatar!
-        </button>
-        <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                  Which you will be?
-                </h1>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
-                <a href="" onClick={handleCloseWhenSelectingAnImage}>
-                  <img src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-1_yeuzft.webp" alt="ice-age" width="70px" onChange={handleImage}/>
-                </a>
-                <a href="" onClick={handleCloseWhenSelectingAnImage}>
-                  <img src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-2_jamxw0.webp" alt="ice-age" width="70px" onChange={handleImage}/>
-                </a>
-                <a href="" onClick={handleCloseWhenSelectingAnImage}>
-                  <img src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-3_zzrpeh.webp" alt="ice-age" width="70px" onChange={handleImage} />
-                </a>
-                <a href="" onClick={handleCloseWhenSelectingAnImage}>
-                  <img src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357944/safe-space-app/Ice-Age-Avatars-4_nl5y36.webp" alt="ice-age" width="70px" onChange={handleImage}
-                  />
-                </a>
-                <a href="" onClick={handleCloseWhenSelectingAnImage}>
-                  <img src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp" alt="ice-age" width="70px" onChange={handleImage}/>
-                </a>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
-              </div>
-            </div>
-          </div>
+  const imageOptions = [
+    {
+      value: "avatar1",
+      label: (
+        <div>
+          <img
+            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-2_jamxw0.webp"
+            alt="ice-age"
+            width="70px"
+            onChange={handleImage}
+          />
+          <span>Holi</span>
         </div>
-        <button type="submit">Signup</button>
-      </form>
+      ),
+    },
+    {
+      value: "avatar1",
+      label: (
+        <div>
+          <img
+            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-3_zzrpeh.webp"
+            alt="ice-age"
+            width="70px"
+            onChange={handleImage}
+          />{" "}
+          <span>Holi</span>
+        </div>
+      ),
+    },
+    {
+      value: "avatar1",
+      label: (
+        <div>
+          <img
+            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357944/safe-space-app/Ice-Age-Avatars-4_nl5y36.webp"
+            alt="ice-age"
+            width="70px"
+            onChange={handleImage}
+          />
+          <span>Holi</span>
+        </div>
+      ),
+    },
+    {
+      value: "avatar1",
+      label: (
+        <div>
+          <img
+            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp"
+            alt="ice-age"
+            width="70px"
+            onChange={handleImage}
+          />
+          <span>Holi</span>
+        </div>
+      ),
+    },
+  ];
+  return (
+    <div className="bg-image">
+      <div className="content">
+        <h2>Sign up</h2>
+        <form onSubmit={handleSignup}>
+          <div className="field-content">
+            <span className="fa fa-user"></span>
+            <input
+              type="text"
+              name="username"
+              placeholder="User name"
+              value={username}
+              onChange={handleUsername}
+            />
+          </div>
+          <div className="field-content">
+            <span className="fa fa-user-secret"></span>
+            <input
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+              value={firstName}
+              onChange={handleFirstName}
+            />
+          </div>
+          <div className="field-content">
+            <span className="fa fa-user-circle"></span>
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+              value={lastName}
+              onChange={handleLastName}
+            />
+          </div>
+          <div className="field-content">
+            <span className="fa fa-envelope"></span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </div>
+          <div className="field-content">
+            <span className="fa fa-lock"></span>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </div>
+          <div className="avatar-title">
+            Choose your Avatar!
+            <Select options={imageOptions} />
+          </div>
+          <div className="redirect">
+          Already have an account? <NavLink to="/signin">Log in!</NavLink>
+          </div>
+          <div className="btn-container">
+            <button>Sign up</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

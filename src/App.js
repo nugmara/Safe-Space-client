@@ -23,10 +23,10 @@ function App() {
         
         <Route path="/home" element={<IsPrivate> <Home /></IsPrivate>}/>
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
-        <Route path="/profile/:id" element={<IsPrivate><Profile /></IsPrivate>}/>
+        <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/userProfile/:id/follow" element={<IsPrivate><UserProfile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
-        <Route path="/profile/:id/edit" element={<IsPrivate><SettingsProfile /></IsPrivate>}/>
+        <Route path="/profile/edit" element={<IsPrivate><SettingsProfile /></IsPrivate>}/>
         <Route path="/information/help" element={<HelpContactPage />}/>
        
 

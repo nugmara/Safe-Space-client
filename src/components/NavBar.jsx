@@ -43,7 +43,7 @@ function NavBar() {
             className="checkActiveClass nav-link nav-dropdown"
           >
             <NavDropdown.Item
-              href={`/profile/${userId}`}
+              href={`/profile`}
               className={checkActiveClass}
             >
               My Profile
@@ -51,7 +51,7 @@ function NavBar() {
             <NavDropdown.Divider />
             <NavDropdown.Item
               className={checkActiveClass}
-              href={`/profile/${userId}/edit`}
+              href={`/profile/edit`}
             >
               Settings
             </NavDropdown.Item>
@@ -73,8 +73,8 @@ function NavBar() {
         <NavLink to="/post">
           <button
             type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
+            data-toggle="modal" 
+            data-target="#exampleModalCenter"
             className="btn-add-post"
           >
             Add a post
@@ -85,14 +85,12 @@ function NavBar() {
   } else {
     return (
       <div>
-        <nav>
-          <NavLink to="/signup" className={checkActiveClass}>
+          {/* <NavLink to="/signup" className={checkActiveClass}>
             Sign Up
           </NavLink>
           <NavLink to="/signin" className={checkActiveClass}>
             Sign in
-          </NavLink>
-        </nav>
+          </NavLink> */}
       </div>
     );
   }

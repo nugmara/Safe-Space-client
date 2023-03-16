@@ -8,27 +8,28 @@ function SearchPage() {
   const [searchUsers, setSearchUsers] = useState("");
   const [findUsers, setfindUsers] = useState([]);
   const [users, setUsers] = useState(null);
-  const [images, setImages] = useState([]);
   const [isFetching, setisFetching] = useState(true);
 
   const findUser = (user) => {
     const foundUser = users.filter((eachUser) => {
-      const usersToLowercase = eachUser.username.toLowerCase();
-      const searchLowerCase = user.toLowerCase();
+      let usersToLowercase = eachUser.username.toLowerCase();
+      let searchLowerCase = user.toLowerCase();
       if (usersToLowercase.includes(searchLowerCase)) {
         return true;
       } else {
         return false;
       }
     });
+    console.log(foundUser)
     setfindUsers(foundUser);
   };
   const handleSearchInput = (e) => {
-    if (e.target.value !== "") {
-      setSearchUsers(e.target.value);
-      findUser(e.target.value);
+    const input = e.target.value
+    if (input !== "") {
+      setSearchUsers(input);
+      findUser(input);
     } else {
-      setSearchUsers(e.target.value);
+      setSearchUsers("");
       setUsers([]);
     }
   };
@@ -60,7 +61,7 @@ function SearchPage() {
       <div>
         {findUsers.map((eachUser) => {
           return (
-            <div>
+            <div key={eachUser._id}>
               <Link
                 to={`/userProfile/${eachUser._id}/follow`}
                 className="text-decoration"

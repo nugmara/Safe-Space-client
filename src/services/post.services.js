@@ -17,9 +17,8 @@ const deleteAPost = (id) => {
   return service.delete(`/post/${id}`);
 };
 
-const likeAPost = async(id) => {
-  const userId = await getUserId()
-  return service.post(`/post/${id}/like`, {userId})
+const likeAPost = (id) => {
+  return service.patch(`/post/${id}/like`)
 }
 
 export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost, likeAPost };

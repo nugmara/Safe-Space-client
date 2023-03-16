@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
 import {
   getAllPostsService,
@@ -9,7 +10,10 @@ import {
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
+  const [liked, setLiked] = useState(false)
   const [isFetching, setIsFetching] = useState(true);
+  const {loggedUser} = useContext(AuthContext)
+  const {id} = useParams()
 
   useEffect(() => {
     getData();
@@ -26,26 +30,22 @@ function Home() {
     }
   };
 
-  const likingAPost = async (id) => {
-    try {
-      const userId = await getUserId();
-      const singlePostDetails = await getDetailsFromAPost(id);
-      const postCreator = singlePostDetails.data.authorId._id;
-      console.log(postCreator);
-      await likeAPost(id, userId);
-      console.log(userId);
-      console.log("creating a notifaction");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+   const likeAPost = async () => {
+     try {
+       await likeAPost(id)
+       setLiked(true)
+     } catch (error) {
+       console.log(error);
+     }
+   };
   if (isFetching) {
     return <h3>Loading...</h3>;
   }
+  
   return (
     <div className="home-container">
       <h3>
-        <img src="../../mind-safe-space-logo.png" alt="" />
+        <img src="../../safe-space-logo-bigger-nobg.png" alt="logo" width="70px" className="logo-image-home" />
       </h3>
       {allPosts.map((eachPost) => {
         return (
@@ -54,21 +54,24 @@ function Home() {
                 <div className="home-page-date">
                 <span>{new Date(eachPost.time).toLocaleString()}</span>
                 </div>
-                <p className="post-username">@<span>{eachPost.authorId.username}</span></p>
+                 <p className="post-username">@<span>{eachPost.authorId.username}</span></p> 
             <Link to={`/post/${eachPost._id}`} className="link-post">
-                <p>{eachPost.content}</p>
+                <p style={{wordWrap: "break-word"}}>{eachPost.content}</p>
                 <br />
             </Link>
                 <div  className="like-post">
-                <p>
-                  {eachPost.totalLikes}
+                 <p>
+                  {eachPost.likes.length}
+                  {liked ? null : (
                   <button
-                    onClick={() => likingAPost(eachPost._id)}
+                    onClick={likeAPost}
                     className="heart-button"
                   >
                     ❤️
                   </button>
-                </p>
+
+                  )}
+                </p> 
 
                 </div>
               </blockquote>

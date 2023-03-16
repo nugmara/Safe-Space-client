@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProfileDetailsService } from "../services/profile.services";
+import {  getProfileDetailsFromAFriendService } from "../services/profile.services";
 import { followUser } from "../services/following.services";
 
 function UserPage() {
@@ -9,15 +9,15 @@ function UserPage() {
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [areFollowingEachOther, setAreFollowingEachOther] = useState(false);
-  const [followUsers, setFollowUsers] = useState(false);
   useEffect(() => {
     getData();
-  }, [id]);
+  }, []);
 
   const getData = async () => {
     try {
-      const response = await getProfileDetailsService(id);
+      const response = await getProfileDetailsFromAFriendService(id);
       setProfile(response.data);
+      console.log(response.data)
       setIsFetching(false);
     } catch (error) {
       console.log(error);
@@ -41,20 +41,20 @@ function UserPage() {
         <div>
           <div className="profile-container">
             <div className="profile-left">
-              <div className="username-profile-another-user">
+              <div className="username-profile">
                 <h4>
                   <span>@</span>
                   {profile.profileDetails.username}
                 </h4>
               </div>
-              <div className="first-last-name-another-user">
+              <div className="first-last-name">
                 <p>
                   {profile.profileDetails.firstName}{" "}
                   {profile.profileDetails.lastName}
                 </p>
               </div>
-              <p className="followers-profile-another-user">
-                Followers: {profile.profileDetails.totalFollowers}
+              <p className="followers-profile">
+                Followers: {profile.profileDetails.followers.length}
               </p>
               {areFollowingEachOther ? null : (
               <button className="follow-button" onClick={followNewUser}>Follow</button>

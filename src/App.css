@@ -1,4 +1,5 @@
 @media (min-width: 390px) and (max-width: 844px) {
+  
   body {
     background-color: #e5ede8;
   }
@@ -12,11 +13,9 @@
     display: flex;
     background-color: #e5ede8;
     justify-content: space-evenly;
-    margin-top: 20px;
+    margin-bottom: 0px;
     position: fixed;
-    z-index: 10;
-    top: 0px;
-    margin-top: 0px;
+    bottom: 0px;
     width: 100%;
   }
   nav a {
@@ -34,8 +33,8 @@
   }
 
   nav a.nav-active {
-    background-color: antiquewhite;
-    color: lightcoral;
+    background-color: #89b898;
+    color: white;
     text-decoration: none;
   }
   .nav-dropdown .dropdown-toggle {
@@ -70,29 +69,15 @@
   .username-profile {
     position: absolute;
     margin-top: 70px;
-    top: 5%;
+    top: -5%;
     left: 7%;
-    color: #1aaae2;
-  }
-  .username-profile-another-user {
-    position: absolute;
-    margin-top: 50px;
-    top: 5%;
-    left: 7%;
-    color: #1aaae2;
+    color:#84b898;
   }
   .first-last-name {
     position: absolute;
     font-weight: bold;
     margin-top: 70px;
-    top: 10%;
-    left: 7%;
-  }
-  .first-last-name-another-user {
-    position: absolute;
-    font-weight: bold;
-    margin-top: 50px;
-    top: 10%;
+    top: 2%;
     left: 7%;
   }
   .image-profile {
@@ -101,16 +86,11 @@
   }
   .followers-profile {
     position: absolute;
-    top: 15%;
+    top: 7%;
     left: 7%;
     margin-top: 70px;
   }
-  .followers-profile-another-user {
-    position: absolute;
-    top: 15%;
-    left: 7%;
-    margin-top: 50px;
-  }
+
   .profile-blockquote {
     display: flex;
     flex-direction: column;
@@ -144,12 +124,13 @@
   }
 
   /* HOME */
+
   .home-container {
-    margin-top: 70px;
+    margin-top: 20px;
   }
   .post-username {
     font-weight: bold;
-    color: #1aaae2;
+    color: #84b898;
   }
   .like-post {
     text-align: end;
@@ -177,6 +158,7 @@
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;
     border-top-right-radius: 15px 255px;
+    
   }
   .link-post {
     text-decoration: none;
@@ -194,8 +176,7 @@
     border-top-left-radius: 225px 15px;
     border-top-right-radius: 15px 255px;
     padding: 10px;
-    margin-top: 20px;
-    margin-top: 80px;
+    margin-top: 30px;
   }
 
   .search-btn {
@@ -222,22 +203,25 @@
   }
 
   /* POST DETAILS */
+  .post-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
   .blockquote-post-details {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 100px;
     margin-left: 50px;
     margin-right: 50px;
   }
   .post-details-username {
     font-weight: bold;
-    color: #1aaae2;
+    color: #84b898;
   }
 
   .post-detail-date {
-    position: absolute;
-    top: 15%;
-    left: 55%;
-    z-index: 5;
+    text-align: end;
   }
   .post-detail-likes {
     text-align: end;
@@ -256,12 +240,13 @@
   .comments-date {
     font-weight: lighter;
     border-bottom: 1px solid black;
+    text-align: end;
   }
 
   /* BOTONES */
   .btn-add-post {
     position: fixed;
-    bottom: 20px;
+    bottom: 70px;
     right: 20px;
     font-size: 1rem;
     font-weight: bold;
@@ -322,5 +307,148 @@
     background: #f7cc02;
     font-weight: bold;
     transition: all 0.35s;
+  }
+
+  .settings {
+    margin-top: 80px;
+  }
+
+
+/* LOGIN  AND SIGN IN*/
+  .signin {
+    margin-top: 80px;
+  }
+  .bg-image {
+    background: url(https://res.cloudinary.com/dhtrxjdas/image/upload/v1678984605/safe-space-app/banksy-image_anrxbk.png);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .bg-image:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+ 
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    width: 370px;
+    padding: 60px 32px;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+  }
+  .content h2 {
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .field-content {
+    position: relative;
+    height: 45px;
+    width: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, 0.94);
+  }
+  .field-content span {
+    width: 40px;
+    line-height: 45px;
+  }
+  .field-content input {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #222;
+  }
+  input[type="textarea"] {
+    height: 200px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    resize: vertical;
+    overflow: auto;
+    white-space: normal; 
+  }
+  .avatar-title {
+    margin-top: 10px;
+    text-align: start;
+    font-weight: bold;
+  }
+  .redirect {
+    text-align: start;
+    margin: 10px 0;
+    color: white;
+  }
+  .redirect a{
+    color:#28b1b5;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+  .redirect:hover a {
+    text-decoration: underline;
+  }
+  .btn-container {
+    margin-top: 20px;
+  }
+  .btn-container button {
+    padding: 10px;
+    background-color: #28b1b5;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+  .btn-container:hover button {
+    background-color: #468388;
+  }
+  .btn-post {
+    padding: 10px;
+    background-color: lightcyan;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+    font-size: 20px;
+    margin-top: 15px;
+  }
+  .btn-post:hover {
+    background: black;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* SETTINGS */
+  .label-stgs {
+    margin-bottom: 10px;
+    font-weight: lighter;
+    position: relative;
+    right: 37%;
+  }
+  .btn-edit {
+    padding: 10px;
+    margin-top: 10px;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+    background: #fff;
+    font-weight: 500;
+  }
+  .btn-edit:hover {
+    background: black;
+    color: white;
   }
 }

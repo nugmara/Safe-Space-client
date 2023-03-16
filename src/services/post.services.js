@@ -13,12 +13,12 @@ const getDetailsFromAPost = (id) => {
   return service.get(`/post/${id}`);
 };
 
-const deleteAPost = (id) => {
-  return service.delete(`/post/${id}`);
+const deleteAPost = (id, userId) => {
+  return service.delete(`/post/${id}`, userId);
 };
 
 const likeAPost = (id) => {
-  return service.patch(`/post/${id}/like`)
+  return service.patch(`/post/like/${id}`)
 }
 
 export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost, likeAPost };

@@ -469,13 +469,14 @@
   }
   .btn-post {
     padding: 10px;
-    background-color: lightcyan;
+    background-color: palevioletred;
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;
     border-top-right-radius: 15px 255px;
     font-size: 20px;
     margin-top: 15px;
+    color: white;
   }
   .btn-post:hover {
     background: black;
@@ -497,8 +498,9 @@
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;
     border-top-right-radius: 15px 255px;
-    background: #fff;
+    background: palevioletred;
     font-weight: 500;
+    color: white;
   }
   .btn-edit:hover {
     background: black;

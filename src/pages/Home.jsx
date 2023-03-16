@@ -9,7 +9,7 @@ import {
 } from "../services/post.services";
 
 function Home() {
-  const [allPosts, setallPosts] = useState(null);
+  const [allPosts, setallPosts] = useState({});
   const [liked, setLiked] = useState(false)
   const [isFetching, setIsFetching] = useState(true);
   const {loggedUser} = useContext(AuthContext)
@@ -33,9 +33,11 @@ function Home() {
    const likeAPost = async () => {
      try {
        await likeAPost(id)
-       setLiked(true)
+      setLiked({...liked, [id]: true})
+
+       setLiked([...liked, id ])
      } catch (error) {
-       console.log(error);
+      //  console.log(error);
      }
    };
   if (isFetching) {
@@ -61,16 +63,16 @@ function Home() {
             </Link>
                 <div className="like-post">
                  <p className="likes">
-                  {eachPost.likes.length}
-                  {liked ? null : (
+                  {eachPost.likes.length} 
+                  
                   <button
-                    onClick={likeAPost}
+                    onClick={() => likeAPost(eachPost._id)}
                     className="heart-button"
                   >
                     ❥
                   </button>
 
-                  )}
+                  
                 </p> 
 
                 </div>

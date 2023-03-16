@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {  getProfileDetailsFromAFriendService } from "../services/profile.services";
-import { followUser } from "../services/following.services";
+import { getProfileDetailsFromAFriendService } from "../services/profile.services";
+import { followUser, unfollowUser } from "../services/following.services";
 
 function UserPage() {
   const params = useParams();
@@ -17,22 +17,34 @@ function UserPage() {
     try {
       const response = await getProfileDetailsFromAFriendService(id);
       setProfile(response.data);
-      console.log(response.data)
+      console.log(response.data.profileDetails.followers.length);
+      console.log(response.data);
       setIsFetching(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const followNewUser = async() => {
+  const followNewUser = async () => {
+    console.log("following user");
     try {
-      await followUser(id)
-      setAreFollowingEachOther(true)
+      await followUser(id);
+      setAreFollowingEachOther(true);
+      getData()
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
- 
+  };
+  const unFollowUser = async () => {
+    try {
+      await unfollowUser(id);
+      setAreFollowingEachOther(false);
+      getData()
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {isFetching ? (
@@ -56,8 +68,14 @@ function UserPage() {
               <p className="followers-profile">
                 Followers: {profile.profileDetails.followers.length}
               </p>
-              {areFollowingEachOther ? null : (
-              <button className="follow-button" onClick={followNewUser}>Follow</button>
+              {areFollowingEachOther ? (
+                <button className="follow-button" onClick={unFollowUser}>
+                  Unfollow
+                </button>
+              ) : (
+                <button className="follow-button" onClick={followNewUser}>
+                  Follow
+                </button>
               )}
             </div>
             <div className="profile-right">

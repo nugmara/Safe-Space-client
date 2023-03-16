@@ -25,6 +25,8 @@ function App() {
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/userProfile/:id/follow" element={<IsPrivate><UserProfile /></IsPrivate>}/>
+       <Route path="/userProfile/:id/unfollow" element={<IsPrivate><UserProfile /></IsPrivate>}/>
+
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
         <Route path="/profile/edit" element={<IsPrivate><SettingsProfile /></IsPrivate>}/>
         <Route path="/information/help" element={<HelpContactPage />}/>

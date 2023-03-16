@@ -11,9 +11,7 @@ import Profile from "./pages/Profile"
 import IsPrivate from "./components/IsPrivate";
 import AddAPost from "./components/AddAPost";
 import PostDetails from "./pages/PostDetails";
-import Chat from "./components/Chat"
 import UserProfile from "./pages/UserProfile"
-import { useState } from "react";
 import SettingsProfile from "./pages/SettingsProfile";
 import HelpContactPage from "./pages/HelpContactPage";
 
@@ -30,7 +28,6 @@ function App() {
         <Route path="/profile/:id" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/userProfile/:id/follow" element={<IsPrivate><UserProfile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
-        <Route path="/chats" element={<Chat />} />
         <Route path="/profile/:id/edit" element={<IsPrivate><SettingsProfile /></IsPrivate>}/>
         <Route path="/information/help" element={<HelpContactPage />}/>
        

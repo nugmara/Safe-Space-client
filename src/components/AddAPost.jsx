@@ -17,15 +17,17 @@ function AddAPost(props) {
     }
   };
   return (
-    <div className="bg-image">
+    <div>
       <div className="content">
+      <h3 className="edit-title">Post</h3>
+        <hr />
         <form>
-          <div class="field-content">
+          <div class="field-content borders">
             <span></span>
             <input type="text" name="title" placeholder="Title" />
           </div>
           <hr />
-          <div className="textarea">
+          <div className="textarea borders">
             <span></span>
             <input
               type="textarea"

@@ -54,20 +54,20 @@ function Home() {
                 <div className="home-page-date">
                 <span>{new Date(eachPost.time).toLocaleString()}</span>
                 </div>
-                 <p className="post-username">@<span>{eachPost.authorId.username}</span></p> 
+                 <p className="post-username">@<span className="user-name-profile">{eachPost.authorId.username}</span></p> 
             <Link to={`/post/${eachPost._id}`} className="link-post">
                 <p style={{wordWrap: "break-word"}}>{eachPost.content}</p>
                 <br />
             </Link>
-                <div  className="like-post">
-                 <p>
+                <div className="like-post">
+                 <p className="likes">
                   {eachPost.likes.length}
                   {liked ? null : (
                   <button
                     onClick={likeAPost}
                     className="heart-button"
                   >
-                    ❤️
+                    ❥
                   </button>
 
                   )}

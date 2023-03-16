@@ -40,12 +40,13 @@ function SettingsProfile() {
     }
   };
   return (
-    <div className="bg-image">
+    <div className="color-edit">
       <div className="content">
-        <h2>Edit your Profile</h2>
+        <h3 className="edit-title">Edit your Profile</h3>
+        <hr />
         <form onSubmit={handleSubmit} className="settings">
           <label className="label-stgs">First Name: </label>
-          <div class="field-content">
+          <div class="field-content borders">
             <input
               type="text"
               name="firstName"
@@ -54,7 +55,7 @@ function SettingsProfile() {
             />
           </div>
           <label className="label-stgs">Last Name: </label>
-          <div class="field-content">
+          <div class="field-content borders">
             <input
               type="text"
               name="lastName"
@@ -63,7 +64,7 @@ function SettingsProfile() {
             />
           </div>
           <label  className="label-stgs">Description: </label>
-          <div class="field-content">
+          <div class="field-content borders">
             <input
               type="text"
               name="description"

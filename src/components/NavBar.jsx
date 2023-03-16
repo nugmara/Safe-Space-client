@@ -75,9 +75,9 @@ function NavBar() {
             type="button"
             data-toggle="modal" 
             data-target="#exampleModalCenter"
-            className="btn-add-post"
+            className="btn-add-post fa fa-pen"
           >
-            Add a post
+            
           </button>
         </NavLink>
       </div>

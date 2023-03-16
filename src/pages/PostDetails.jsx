@@ -67,7 +67,7 @@ function PostDetails() {
         <h3>Loading...</h3>
       ) : (
         <div className="title-post-details">
-          <h2 >Thread</h2>
+          <h2 className="title-post-details">Thread</h2>
           <blockquote className="blockquote-post-details">
             <p className="post-details-username">
               @
@@ -81,7 +81,7 @@ function PostDetails() {
             <p className="post-detail-date">
               {new Date(postDetail.time).toLocaleString()}
             </p>
-            <p className="post-detail-likes">{postDetail.totalLikes}❤️</p>
+            <p className="post-detail-likes">{postDetail.totalLikes}<button className="heart-button">❥</button></p>
             <hr />
             <CommentsList resfreshingForComments={resfreshingForComments}/>
             <form className="add-comments">

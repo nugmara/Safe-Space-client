@@ -1,17 +1,17 @@
 @media (min-width: 390px) and (max-width: 844px) {
   
   body {
-    background-color: #e5ede8;
+    background-color: #fffafa;
   }
   .App {
     text-align: center;
-    background-color: #e5ede8;
+    background-color: #fffafa;
     min-height: 100vh;
   }
   /* NAVBAR */
   nav {
     display: flex;
-    background-color: #e5ede8;
+    background-color: #F5F5F5;
     justify-content: space-evenly;
     margin-bottom: 0px;
     position: fixed;
@@ -24,8 +24,8 @@
     padding: 20px;
   }
   nav a:hover {
-    background-color: #89b898;
-    color: black;
+    background-color: black;
+    color: white;
     border-radius: 70px;
   }
   nav a.nav-inactive {
@@ -33,7 +33,7 @@
   }
 
   nav a.nav-active {
-    background-color: #89b898;
+    background-color: #1EBBD7;
     color: white;
     text-decoration: none;
   }
@@ -45,8 +45,8 @@
   }
 
   .nav-dropdown .dropdown-toggle:hover {
-    background-color: #a9a9a9;
-    color: black;
+    background-color: #1EBBD7;
+    color: white;
   }
 
   .nav-dropdown .dropdown-toggle.active {
@@ -71,7 +71,8 @@
     margin-top: 70px;
     top: -5%;
     left: 7%;
-    color:#84b898;
+    color: black;
+    font-weight: bolder;
   }
   .first-last-name {
     position: absolute;
@@ -129,15 +130,32 @@
     margin-top: 20px;
   }
   .post-username {
-    font-weight: bold;
-    color: #84b898;
+    font-weight: bolder;
+    color: black;
   }
+
   .like-post {
     text-align: end;
+    font-size: 22px;
   }
   .heart-button {
     border: none;
+    font-size: 25px;
     background-color: transparent;
+    transform-origin: center;
+    transition: transform 0.2s ease-in-out;
+  }
+  @keyframes rotate{
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(420deg);
+    }
+  }
+  .heart-button:hover{
+    animation: rotate 1s ease-in-out;
+    transform: rotate(90deg);
   }
   .home-page-date {
     text-align: end;
@@ -149,8 +167,8 @@
 
   /* POSTS */
   blockquote {
-    background: #f9f9f9;
-    border-left: 10px solid #ccc;
+    background: #f8f8ff;
+    border-left: 10px solid #aaaa;
     margin-top: 20px;
     padding: 0.5em 10px;
     text-align: start;
@@ -165,7 +183,7 @@
     color: black;
   }
   .link-post:hover {
-    color: lightcoral;
+    color:#28b1b5;
   }
 
   /* Search Page */
@@ -208,6 +226,9 @@
     justify-content: space-between;
     align-items: flex-start;
   }
+  .title-post-details {
+    margin-top: 20px;
+  }
 
   .blockquote-post-details {
     margin-top: 50px;
@@ -217,7 +238,7 @@
   }
   .post-details-username {
     font-weight: bold;
-    color: #84b898;
+    color:#ff003b;
   }
 
   .post-detail-date {
@@ -225,6 +246,7 @@
   }
   .post-detail-likes {
     text-align: end;
+    font-size: 22px;
   }
   .input-profile-details {
     width: 70%;
@@ -307,6 +329,7 @@
     background: #f7cc02;
     font-weight: bold;
     transition: all 0.35s;
+    color: white;
   }
 
   .settings {
@@ -319,7 +342,7 @@
     margin-top: 80px;
   }
   .bg-image {
-    background: url(https://res.cloudinary.com/dhtrxjdas/image/upload/v1678984605/safe-space-app/banksy-image_anrxbk.png);
+    background: url(https://res.cloudinary.com/dhtrxjdas/image/upload/v1678992644/safe-space-app/ec00d53b8fa62b96a3d2fa3276de60ff_tq4ul1.jpg);
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -347,7 +370,7 @@
     box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
   }
   .content h2 {
-    color: black;
+    color: white;
     font-size: 40px;
     font-weight: 600;
   }
@@ -383,6 +406,7 @@
     margin-top: 10px;
     text-align: start;
     font-weight: bold;
+    color: white;
   }
   .redirect {
     text-align: start;
@@ -397,6 +421,35 @@
   .redirect:hover a {
     text-decoration: underline;
   }
+  .borders {
+    border: 1px solid black;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+  /* EDIT */
+  .edit-title {
+    color: black;
+    font-size: 30px;
+  }
+  /* .color-edit{
+    background: url(https://res.cloudinary.com/dhtrxjdas/image/upload/v1678995255/safe-space-app/9e1cd0849c3010cefb376e17586f8aae_xuxjpz.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .color-edit:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+  } */
+  /* no */
   .btn-container {
     margin-top: 20px;
   }
@@ -450,5 +503,23 @@
   .btn-edit:hover {
     background: black;
     color: white;
+  }
+
+  .wrapper-images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+    padding: 5px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
 }

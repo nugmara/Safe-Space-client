@@ -6,12 +6,10 @@ import {
   getDetailsFromAPost,
   likeAPost,
 } from "../services/post.services";
-import { createANotification } from "../services/notifications.services";
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
-  const [isLikedNotification, setIsLikedNotification] = useState(false);
 
   useEffect(() => {
     getData();
@@ -37,14 +35,6 @@ function Home() {
       await likeAPost(id, userId);
       console.log(userId);
       console.log("creating a notifaction");
-      const notificationCreation = await createANotification(
-        id,
-        userId,
-        postCreator
-      );
-      console.log("notifications", notificationCreation);
-      getData();
-      setIsLikedNotification(true);
     } catch (error) {
       console.log(error);
     }

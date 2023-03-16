@@ -6,7 +6,6 @@ import Signup from "./auth/Signup";
 import Signin from "./auth/Signin";
 import Home from "./pages/Home"
 import SearchPage from "./pages/SearchPage"
-import Notifications from "./pages/Notifications"
 import Profile from "./pages/Profile"
 import IsPrivate from "./components/IsPrivate";
 import AddAPost from "./components/AddAPost";
@@ -24,7 +23,6 @@ function App() {
         
         <Route path="/home" element={<IsPrivate> <Home /></IsPrivate>}/>
         <Route path="/search" element={<IsPrivate><SearchPage /></IsPrivate>}/>
-        <Route path="/notifications" element={<IsPrivate><Notifications /></IsPrivate>}/>
         <Route path="/profile/:id" element={<IsPrivate><Profile /></IsPrivate>}/>
         <Route path="/userProfile/:id/follow" element={<IsPrivate><UserProfile /></IsPrivate>}/>
         <Route path="/post" element={<IsPrivate><AddAPost /></IsPrivate>}/>
@@ -33,7 +31,6 @@ function App() {
        
 
         <Route path="/post/:id" element={<PostDetails />}/>
-        <Route path="/notifications/:id" element={<Notifications/>}/>
         
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>

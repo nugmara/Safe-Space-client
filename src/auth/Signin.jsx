@@ -8,7 +8,6 @@ function Signin() {
   const { authenticateUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ function Signin() {
   return (
     <div>
       <form onSubmit={handleSignIn}>
-        <label>Username: </label>
+        <label htmlFor="username">Username: </label>
         <input
           type="text"
           name="username"
@@ -40,7 +39,7 @@ function Signin() {
           onChange={(e) => setUsername(e.target.value)}
         />
 
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"

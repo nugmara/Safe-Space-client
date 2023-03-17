@@ -111,7 +111,7 @@ function HelpContactPage() {
     }
   }
   return (
-    <div>
+    <div className="mental-health-container">
       <p>
         Most people don't think about future mental health issues, but mental
         health determines how you think, feel and act. Good mental health is
@@ -120,6 +120,7 @@ function HelpContactPage() {
         could be a sign of a mental health problem and should be addressed
         immediately.
       </p>
+      <div className="statistics help-section">
       <h3>Mental and substance use disorders are common globally</h3>
       <p>
         In the map we see that globally, mental and substance use disorders are
@@ -137,7 +138,8 @@ function HelpContactPage() {
         <option value="option7">Oceania</option>
       </select>
       <img src={getImage()} width="500px" />
-      <div>
+      </div>
+      <div className="help-section">
         <p>If you need help feel free to chat with other users and help each other.
         If you think that you need professional help, please, contact some of this numbers below.
         </p>

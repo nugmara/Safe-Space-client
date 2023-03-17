@@ -29,6 +29,7 @@ function Profile() {
   const handleDelete = async (id) => {
     try {
       await deleteAPost(id);
+      getData()
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +55,7 @@ function Profile() {
                 </p>
               </div>
               <p className="followers-profile">Followers: {profile.profileDetails.totalFollowers}</p>
+              <p className="description-profile">{profile.profileDetails.description}</p>
             </div>
             <div className="profile-right">
               <img

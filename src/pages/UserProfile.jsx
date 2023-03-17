@@ -98,8 +98,8 @@ function UserPage() {
                   </p>
                 </div>
                 <div className="profile-details-container">
-                  <p className="profile-details-likes">
-                    {eachPost.totalLikes}❤️
+                  <p className="profile-details-likes heart-button">
+                    {eachPost.totalLikes} ❥
                   </p>
                 </div>
               </blockquote>

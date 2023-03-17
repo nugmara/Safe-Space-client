@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { createAPost } from "../services/post.services";
 
 function AddAPost(props) {
   const [content, setContent] = useState("");
   const [authorId, setAuthorId] = useState();
+  const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -12,6 +14,7 @@ function AddAPost(props) {
     };
     try {
       await createAPost(newPost);
+      navigate("/profile")
     } catch (error) {
       console.log(error);
     }
@@ -20,12 +23,8 @@ function AddAPost(props) {
     <div>
       <div className="content">
       <h3 className="edit-title">Post</h3>
-        <hr />
+      
         <form>
-          <div class="field-content borders">
-            <span></span>
-            <input type="text" name="title" placeholder="Title" />
-          </div>
           <hr />
           <div className="textarea borders">
             <span></span>

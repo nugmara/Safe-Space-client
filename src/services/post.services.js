@@ -20,5 +20,8 @@ const deleteAPost = (id, userId) => {
 const likeAPost = (id) => {
   return service.patch(`/post/like/${id}`)
 }
+const deleteALikeService = (id) => {
+  return service.delete(`/post/like/:id`)
+}
 
-export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost, likeAPost };
+export { getAllPostsService, createAPost, getDetailsFromAPost, deleteAPost, likeAPost, deleteALikeService };

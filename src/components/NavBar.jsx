@@ -1,10 +1,11 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
 import { NavDropdown } from "react-bootstrap";
 
 function NavBar() {
+  const location = useLocation();
   const checkActiveClass = (navInfo) => {
     console.log(navInfo);
     if (navInfo.isActive === true) {
@@ -29,8 +30,7 @@ function NavBar() {
     authenticateUser();
     navigate("/home");
   };
-
-  if (isLoggedIn === true) {
+  {
     return (
       <div className="nav-page">
         <nav>
@@ -42,10 +42,7 @@ function NavBar() {
             id="basic-nav-dropdown"
             className="checkActiveClass nav-link nav-dropdown"
           >
-            <NavDropdown.Item
-              href={`/profile`}
-              className={checkActiveClass}
-            >
+            <NavDropdown.Item href={`/profile`} className={checkActiveClass}>
               My Profile
             </NavDropdown.Item>
             <NavDropdown.Divider />
@@ -70,27 +67,16 @@ function NavBar() {
             Help Center
           </NavLink>
         </nav>
-        <NavLink to="/post">
-          <button
-            type="button"
-            data-toggle="modal" 
-            data-target="#exampleModalCenter"
-            className="btn-add-post fa fa-pen"
-          >
-            
-          </button>
-        </NavLink>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-          {/* <NavLink to="/signup" className={checkActiveClass}>
-            Sign Up
+        {location.pathname !== "/information/help" && (
+          <NavLink to="/post">
+            <button
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+              className="btn-add-post fa fa-pen"
+            ></button>
           </NavLink>
-          <NavLink to="/signin" className={checkActiveClass}>
-            Sign in
-          </NavLink> */}
+        )}
       </div>
     );
   }

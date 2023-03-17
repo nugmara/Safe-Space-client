@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import {
   getProfileDetailsService,
@@ -11,6 +11,7 @@ function SettingsProfile() {
   const [lastName, setLastName] = useState("");
   const [description, setDescription] = useState("");
   const { loggedUser } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -35,6 +36,7 @@ function SettingsProfile() {
         description,
       };
       await updateProfileService(updateProfile);
+      navigate("/profile")
     } catch (error) {
       console.log(error);
     }

@@ -1,5 +1,4 @@
 @media (min-width: 390px) and (max-width: 844px) {
-  
   body {
     background-color: #fffafa;
   }
@@ -11,7 +10,7 @@
   /* NAVBAR */
   nav {
     display: flex;
-    background-color: #F5F5F5;
+    background-color: #f5f5f5;
     justify-content: space-evenly;
     margin-bottom: 0px;
     position: fixed;
@@ -33,7 +32,7 @@
   }
 
   nav a.nav-active {
-    background-color: #1EBBD7;
+    background-color: #705052;
     color: white;
     text-decoration: none;
   }
@@ -45,7 +44,7 @@
   }
 
   .nav-dropdown .dropdown-toggle:hover {
-    background-color: #1EBBD7;
+    background-color: #705052;
     color: white;
   }
 
@@ -90,6 +89,13 @@
     top: 7%;
     left: 7%;
     margin-top: 70px;
+  }
+  .description-profile {
+    position: absolute;
+    top: 12%;
+    left: 7%;
+    margin-top: 70px;
+    font-weight: lighter;
   }
 
   .profile-blockquote {
@@ -145,7 +151,7 @@
     transform-origin: center;
     transition: transform 0.2s ease-in-out;
   }
-  @keyframes rotate{
+  @keyframes rotate {
     0% {
       transform: rotate(0deg);
     }
@@ -153,7 +159,7 @@
       transform: rotate(420deg);
     }
   }
-  .heart-button:hover{
+  .heart-button:hover {
     animation: rotate 1s ease-in-out;
     transform: rotate(90deg);
   }
@@ -176,14 +182,13 @@
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;
     border-top-right-radius: 15px 255px;
-    
   }
   .link-post {
     text-decoration: none;
     color: black;
   }
   .link-post:hover {
-    color:#28b1b5;
+    color: #28b1b5;
   }
 
   /* Search Page */
@@ -238,7 +243,7 @@
   }
   .post-details-username {
     font-weight: bold;
-    color:#ff003b;
+    color: #ff003b;
   }
 
   .post-detail-date {
@@ -268,7 +273,7 @@
   /* BOTONES */
   .btn-add-post {
     position: fixed;
-    bottom: 70px;
+    top: 20px;
     right: 20px;
     font-size: 1rem;
     font-weight: bold;
@@ -332,12 +337,12 @@
     color: white;
   }
 
+
   .settings {
     margin-top: 80px;
   }
 
-
-/* LOGIN  AND SIGN IN*/
+  /* LOGIN  AND SIGN IN*/
   .signin {
     margin-top: 80px;
   }
@@ -355,9 +360,9 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
   }
- 
+
   .content {
     position: absolute;
     top: 50%;
@@ -367,7 +372,7 @@
     width: 370px;
     padding: 60px 32px;
     background: rgba(255, 255, 255, 0.04);
-    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
   }
   .content h2 {
     color: white;
@@ -400,7 +405,7 @@
     text-align: center;
     resize: vertical;
     overflow: auto;
-    white-space: normal; 
+    white-space: normal;
   }
   .avatar-title {
     margin-top: 10px;
@@ -413,8 +418,8 @@
     margin: 10px 0;
     color: white;
   }
-  .redirect a{
-    color:#28b1b5;
+  .redirect a {
+    color: #28b1b5;
     font-weight: bolder;
     text-decoration: none;
   }
@@ -483,7 +488,7 @@
     color: white;
     font-weight: bold;
   }
-  
+
   /* SETTINGS */
   .label-stgs {
     margin-bottom: 10px;
@@ -524,4 +529,119 @@
     margin-right: 10px;
     margin-left: 10px;
   }
+
+  /* HELP  */
+
+  h3 {
+    margin-top: 20px;
+  }
+  p {
+    line-height: 1.5;
+  }
+  select {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  .help-section {
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .help-section p {
+    margin-top: 10px;
+  }
+
+  .help-section select {
+    margin-top: 10px;
+  }
+
+  .help-section ul {
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  .mental-health-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+
+  /* / */
+  .Appi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .just-logo {
+    background: #222;
+    min-height: 100vh;
+    position: relative;
+  }
+  .logo-button {
+    border: none;
+    background: transparent;
+  }
+  .logo-button img:first-child {
+    position: absolute;
+    top: 20%;
+    left: 0;
+  }
+  .btn-signup {
+    position: absolute;
+    top: 65%;
+  }
+  .btn-login {
+    position: absolute;
+    top: 75%;
+  }
+  .btn-container-sign button {
+    padding: 10px;
+    background-color: #28b1b5;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+  .btn-container-login button {
+    padding: 10px;
+    background-color: #28b1b5;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 225px 15px;
+    border-top-right-radius: 15px 255px;
+  }
+  .btn-container-login:hover button {
+    background-color: #0052FF;
+  }
+  .btn-container-sign:hover button {
+    background-color: #0700C4;
+  }
+  .logo-image-home {
+    text-align: start;
+    margin-left: 20px;
+    margin-top: -15px;
+  }
+
 }

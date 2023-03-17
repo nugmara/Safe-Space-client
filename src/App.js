@@ -13,6 +13,7 @@ import PostDetails from "./pages/PostDetails";
 import UserProfile from "./pages/UserProfile"
 import SettingsProfile from "./pages/SettingsProfile";
 import HelpContactPage from "./pages/HelpContactPage";
+import LogoHome from "./pages/LogoHome";
 
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
        
 
         <Route path="/post/:id" element={<PostDetails />}/>
-        
+
+        <Route path="/" element={<LogoHome />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>
       </Routes>

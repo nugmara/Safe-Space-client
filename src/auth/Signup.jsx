@@ -38,20 +38,11 @@ function Signup() {
       navigate("/signin");
       console.log(response);
     } catch (error) {
+      console.log(error.response.status)
       if(error.response.status === 400){
-        if(error.response.data.errorMessage.includes("email")){
-          setErrorMessage("Please provide a valid email address");
-        } else if(error.response.data.errorMessage.includes("password")){
-          setErrorMessage("The password should have at least 8 chars, one uppercase, one lowercase and one special character");
-        } else if(error.response.data.errorMessage.includes("username")){
-          setErrorMessage("Username already exists");
-        } else if(error.response.data.errorMessage.includes("email")){
-          setErrorMessage("Email address already exists");
-        }
-      } else {
-        console.log(error);
-      }
-    };
+        setErrorMessage(error.response.data.errorMessage)
+    }
+  }
   };
   const handleCloseWhenSelectingAnImage = (e) => {
     e.preventDefault();

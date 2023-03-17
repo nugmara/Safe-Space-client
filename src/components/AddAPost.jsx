@@ -42,5 +42,6 @@ function AddAPost(props) {
     </div>
   );
 }
+}
 
 export default AddAPost;

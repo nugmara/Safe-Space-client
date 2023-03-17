@@ -97,7 +97,7 @@ function PostDetails() {
                 onClick={handleSubmit}
                 className="profile-details-reply-button"
               >
-                Reply
+                <span className="fa fa-paper-plane"></span>
               </button>
             </form>
           </blockquote>

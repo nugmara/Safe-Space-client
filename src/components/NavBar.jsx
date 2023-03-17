@@ -56,6 +56,7 @@ function NavBar() {
             <NavDropdown.Item
               onClick={handleLogout}
               className={checkActiveClass}
+              href="/"
             >
               Logout
             </NavDropdown.Item>
@@ -67,7 +68,7 @@ function NavBar() {
             Help Center
           </NavLink>
         </nav>
-        {location.pathname !== "/information/help" && (
+        {location.pathname !== "/information/help" && location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/profile/edit" && (
           <NavLink to="/post">
             <button
               type="button"

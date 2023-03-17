@@ -27,14 +27,12 @@ function AddAPost(props) {
         <form>
           <hr />
           <div className="textarea borders">
-            <span></span>
             <input
               type="textarea"
               name="content"
               placeholder="Put your thoughts on paper queen!"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              
             />
           </div>
           <div>

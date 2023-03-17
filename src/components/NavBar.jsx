@@ -7,7 +7,6 @@ import { NavDropdown } from "react-bootstrap";
 function NavBar() {
   const location = useLocation();
   const checkActiveClass = (navInfo) => {
-    console.log(navInfo);
     if (navInfo.isActive === true) {
       return "nav-active";
     } else {
@@ -24,7 +23,7 @@ function NavBar() {
     const userId = await getUserId();
     setUserId(userId);
   };
-  const { isLoggedIn, authenticateUser } = useContext(AuthContext);
+  const { authenticateUser } = useContext(AuthContext);
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     authenticateUser();

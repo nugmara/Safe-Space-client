@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createAComment, getAllComments } from "../services/comments.services";
 import { getDetailsFromAPost } from "../services/post.services";
 import { getUserId } from "../services/auth.services";
@@ -15,7 +15,7 @@ function PostDetails() {
   const [resfreshingForComments, setresfreshingForComments] = useState([]);
   const { id } = params;
   const { loggedUser } = useContext(AuthContext);
-  console.log(id);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -29,20 +29,18 @@ function PostDetails() {
   const getData = async () => {
     try {
       const response = await getDetailsFromAPost(id);
-      console.log(response);
       setPostDetail(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   const handleComments = async() => {
     try {
       const response = await getAllComments(id)
-      console.log(response)
       setresfreshingForComments(response.data)
     } catch (error) {
-      console.log(error)
+      navigate("/error")
     }
   }
   const handleSubmit = async (e) => {
@@ -51,13 +49,11 @@ function PostDetails() {
       content,
       author: loggedUser,
     };
-    console.log(newComment);
     try {
       const response = await createAComment(id, newComment);
-      console.log(response);
        handleComments()
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
 

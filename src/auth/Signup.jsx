@@ -36,9 +36,7 @@ function Signup() {
     try {
       const response = await signupService(newUser);
       navigate("/signin");
-      console.log(response);
     } catch (error) {
-      console.log(error.response.status)
       if(error.response.status === 400){
         setErrorMessage(error.response.data.errorMessage)
     }

@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { verifyService } from "../services/auth.services";
 
 const AuthContext = createContext();
@@ -10,7 +11,7 @@ function AuthWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
-
+  const navigate = useNavigate()
   //funciones de auth
   // 1. Esta función va a contactar al BE para validar el Toekn
   const authenticateUser = async () => {
@@ -21,7 +22,7 @@ function AuthWrapper(props) {
       setLoggedUser(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
       setIsLoggedIn(false);
       setLoggedUser(null);
       setIsFetching(false);

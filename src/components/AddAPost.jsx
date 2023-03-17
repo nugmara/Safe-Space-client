@@ -16,7 +16,7 @@ function AddAPost(props) {
       await createAPost(newPost);
       navigate("/profile")
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   return (

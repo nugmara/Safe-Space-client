@@ -19,7 +19,6 @@ function Signin() {
     };
     try {
       const response = await signinService(userCredentials);
-      console.log(response);
       localStorage.setItem("authToken", response.data.authToken);
 
       authenticateUser();
@@ -31,7 +30,7 @@ function Signin() {
       } else if (error.response.status === 401) {
         setErrorMessage("Invalid username or password");
       } else {
-        console.log(error);
+        navigate("/error")
       }
     }
   };

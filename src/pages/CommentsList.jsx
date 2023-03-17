@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getAllComments } from "../services/comments.services";
 
 function CommentsList(props) {
@@ -8,7 +8,7 @@ function CommentsList(props) {
   const {resfreshingForComments} = props
   const params = useParams()
   const {id} = params
-  // console.log(allComments)
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -16,11 +16,10 @@ function CommentsList(props) {
   const getData = async () => {
     try {
       const response = await getAllComments(id);
-      console.log(response)
       setAllComments(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   if (isFetching) {

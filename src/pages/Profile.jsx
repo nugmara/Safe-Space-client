@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { followUser } from "../services/following.services";
 import { getProfileDetailsService } from "../services/profile.services";
 import { deleteAPost } from "../services/post.services";
@@ -11,6 +11,7 @@ function Profile() {
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getData();
@@ -18,12 +19,11 @@ function Profile() {
   const getData = async () => {
     try {
       const response = await getProfileDetailsService();
-      console.log(response);
       setProfile(response.data);
       setIsFollowing(response.data.isFollowing);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+    navigate("/error")
     }
   };
   const handleDelete = async (id) => {
@@ -31,7 +31,7 @@ function Profile() {
       await deleteAPost(id);
       getData()
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
   return (

@@ -1,4 +1,4 @@
-# Backlog Quest
+# Safe Space
 
 <br>
 
@@ -188,14 +188,13 @@ or picture of your physical board
 
 The url to your repository and to your deployed project
 
-[Client repository Link](https://github.com/jorgeberrizbeitia/backlog-quest)
+[Client repository Link](https://safe-space-app.netlify.app/)
 
-[Server repository Link](https://github.com/jorgeberrizbeitia/backlog-quest-server)
+[Server repository Link](https://expensive-loincloth-colt.cyclic.app/api)
 
-[Deployed App Link](https://backlog-quest.herokuapp.com/login)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](https://docs.google.com/presentation/d/1zndKZ8DC-_i391alptPKsAKanCSXTrLVL39L3xtEjz8/edit?usp=sharing)
+[Slides Link](https://docs.google.com/presentation/d/1b5fEBRB_W34ImcXpYAofZE-2KfVfnDKf/edit?usp=sharing&ouid=102181827856456085623&rtpof=true&sd=true)

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
 import {
@@ -16,6 +16,7 @@ function Home() {
   const { loggedUser } = useContext(AuthContext);
   const params = useParams()
   const { id } = params
+  const navigate = useNavigate()
 
 
   useEffect(() => {
@@ -25,31 +26,13 @@ function Home() {
   const getData = async () => {
     try {
       const response = await getAllPostsService();
-      console.log(response.data);
       setallPosts(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error")
     }
   };
-  // const likeAPost = async () => {
-  //   try {
-  //     await likeAPost(id);
-  //     setisLiked(true);
-  //     getData();
-  //   } catch (error) {
-  //     //  console.log(error);
-  //   }
-  // };
-  // const deleteALike = async () => {
-  //   try {
-  //     await deleteALikeService(id);
-  //     setisLiked(false);
-  //     getData();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  
   if (isFetching) {
     return <h3>Loading...</h3>;
   }

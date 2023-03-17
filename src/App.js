@@ -14,6 +14,8 @@ import UserProfile from "./pages/UserProfile"
 import SettingsProfile from "./pages/SettingsProfile";
 import HelpContactPage from "./pages/HelpContactPage";
 import LogoHome from "./pages/LogoHome";
+import NotFound from "./pages/NotFound";
+import Error from "./pages/Error"
 
 
 function App() {
@@ -38,6 +40,10 @@ function App() {
         <Route path="/" element={<LogoHome />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>
+
+         {/* error FE routes */}
+         <Route path="/error" element={<Error />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

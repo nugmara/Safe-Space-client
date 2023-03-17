@@ -58,7 +58,7 @@ function Home() {
     <div className="home-container">
       <h3 className="logo-image-home">
         <img
-          src="../../safe-space-just-logo-removebg-preview.png"
+          src="../../JUST-LOGO-removebg-preview.png"
           alt="logo"
           width="90px"
           

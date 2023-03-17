@@ -590,7 +590,7 @@
     height: 100vh;
   }
   .just-logo {
-    background: #222;
+    background: white;
     min-height: 100vh;
     position: relative;
   }

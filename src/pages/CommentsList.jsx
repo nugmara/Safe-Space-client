@@ -19,7 +19,7 @@ function CommentsList(props) {
       setAllComments(response.data);
       setIsFetching(false);
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   };
   if (isFetching) {

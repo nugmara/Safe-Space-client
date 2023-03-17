@@ -23,7 +23,7 @@ function Profile() {
       setIsFollowing(response.data.isFollowing);
       setIsFetching(false);
     } catch (error) {
-    navigate("/error")
+    console.log(error)
     }
   };
   const handleDelete = async (id) => {
@@ -31,7 +31,7 @@ function Profile() {
       await deleteAPost(id);
       getData()
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   };
   return (

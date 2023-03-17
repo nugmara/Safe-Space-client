@@ -30,7 +30,7 @@ function Signin() {
       } else if (error.response.status === 401) {
         setErrorMessage("Invalid username or password");
       } else {
-        navigate("/error")
+        console.log(error)
       }
     }
   };

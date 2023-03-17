@@ -40,7 +40,7 @@ function PostDetails() {
       const response = await getAllComments(id)
       setresfreshingForComments(response.data)
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   }
   const handleSubmit = async (e) => {
@@ -53,7 +53,7 @@ function PostDetails() {
       const response = await createAComment(id, newComment);
        handleComments()
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   };
 

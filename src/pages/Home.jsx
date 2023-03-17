@@ -29,7 +29,7 @@ function Home() {
       setallPosts(response.data);
       setIsFetching(false);
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   };
   

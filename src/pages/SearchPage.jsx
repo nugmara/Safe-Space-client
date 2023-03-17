@@ -42,7 +42,7 @@ function SearchPage() {
       setUsers(response.data);
       setisFetching(false);
     } catch (error) {
-      navigate("/error")
+      console.log(error)
     }
   };
   if (isFetching) {

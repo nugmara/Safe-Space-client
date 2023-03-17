@@ -32,7 +32,7 @@ function CommentsList(props) {
       {resfreshingForComments.map((eachComment) => {
         return(
           <div key={eachComment._id}>
-            <p className="comments-username">@<span>{eachComment.author.username}</span> </p>
+            <p className="comments-username">@<span>{eachComment.author?.username}</span> </p>
             <p style={{wordWrap: "break-word"}}>{eachComment.content}</p>
             <p className="comments-date">at {new Date(eachComment.time).toLocaleString()}</p>
           </div>

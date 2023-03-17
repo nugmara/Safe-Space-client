@@ -68,7 +68,7 @@ function PostDetails() {
             <p className="post-details-username">
               @
               <span className="post-details-username">
-                {postDetail.authorId.username}
+                {/* {postDetail.authorId.username} */}
               </span>
             </p>
             <div className="post-details-content" style={{wordWrap: "break-word"}}>

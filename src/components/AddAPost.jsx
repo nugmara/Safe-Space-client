@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createAPost } from "../services/post.services";
 
-function AddAPost(props) {
+function AddAPost() {
   const [content, setContent] = useState("");
   const [authorId, setAuthorId] = useState();
   const navigate = useNavigate()
@@ -18,6 +18,7 @@ function AddAPost(props) {
     } catch (error) {
      console.log("/error")
   };
+}
   return (
     <div>
       <div className="content">
@@ -42,6 +43,6 @@ function AddAPost(props) {
     </div>
   );
 }
-}
+
 
 export default AddAPost;

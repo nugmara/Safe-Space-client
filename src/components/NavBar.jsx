@@ -33,41 +33,46 @@ function NavBar() {
   {
     return (
       <div className="nav-page">
-        <nav>
-          <NavLink to="/home" className={checkActiveClass}>
-            Home
-          </NavLink>
-          <NavDropdown
-            title="Profile"
-            id="basic-nav-dropdown"
-            className="checkActiveClass nav-link nav-dropdown"
-          >
-            <NavDropdown.Item href={`/profile`} className={checkActiveClass}>
-              My Profile
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item
-              className={checkActiveClass}
-              href={`/profile/edit`}
-            >
-              Settings
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item
-              onClick={handleLogout}
-              className={checkActiveClass}
-              href="/"
-            >
-              Logout
-            </NavDropdown.Item>
-          </NavDropdown>
-          <NavLink to="/search" className={checkActiveClass}>
-            Search
-          </NavLink>
-          <NavLink to="/information/help" className={checkActiveClass}>
-            Help Center
-          </NavLink>
-        </nav>
+     <nav>
+  {location.pathname !== "/signup" && location.pathname !== "/signin" && (
+    <>
+      <NavLink to="/home" className={checkActiveClass}>
+        Home
+      </NavLink>
+      <NavDropdown
+        title="Profile"
+        id="basic-nav-dropdown"
+        className="checkActiveClass nav-link nav-dropdown"
+      >
+        <NavDropdown.Item href={`/profile`} className={checkActiveClass}>
+          My Profile
+        </NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item
+          className={checkActiveClass}
+          href={`/profile/edit`}
+        >
+          Settings
+        </NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item
+          onClick={handleLogout}
+          className={checkActiveClass}
+          href="/"
+        >
+          Logout
+        </NavDropdown.Item>
+      </NavDropdown>
+      <NavLink to="/search" className={checkActiveClass}>
+        Search
+      </NavLink>
+      <NavLink to="/information/help" className={checkActiveClass}>
+        Help Center
+      </NavLink>
+    </>
+  )}
+</nav>
+
         {location.pathname !== "/information/help" && location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/profile/edit" && (
           <NavLink to="/post">
             <button

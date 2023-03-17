@@ -643,5 +643,9 @@
     margin-left: 20px;
     margin-top: -15px;
   }
-
+  .error-message {
+    color: red;
+    background-color: white;
+    font-weight: bold;
+  }
 }

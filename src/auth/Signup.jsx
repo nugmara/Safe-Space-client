@@ -11,6 +11,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleFirstName = (e) => setFirstName(e.target.value);
@@ -37,10 +38,21 @@ function Signup() {
       navigate("/signin");
       console.log(response);
     } catch (error) {
-      console.log(error);
-    }
+      if(error.response.status === 400){
+        if(error.response.data.errorMessage.includes("email")){
+          setErrorMessage("Please provide a valid email address");
+        } else if(error.response.data.errorMessage.includes("password")){
+          setErrorMessage("The password should have at least 8 chars, one uppercase, one lowercase and one special character");
+        } else if(error.response.data.errorMessage.includes("username")){
+          setErrorMessage("Username already exists");
+        } else if(error.response.data.errorMessage.includes("email")){
+          setErrorMessage("Email address already exists");
+        }
+      } else {
+        console.log(error);
+      }
+    };
   };
-
   const handleCloseWhenSelectingAnImage = (e) => {
     e.preventDefault();
     setImage(e.target.src);
@@ -166,7 +178,10 @@ function Signup() {
           Already have an account? <NavLink to="/signin">Log in!</NavLink>
           </div>
           <div className="btn-container">
-            <button>Sign up</button>
+          <br />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+            <button>Sign up</button>  
           </div>
         </form>
       </div>

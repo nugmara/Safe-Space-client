@@ -8,6 +8,7 @@ function Signin() {
   const { authenticateUser } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -25,7 +26,13 @@ function Signin() {
       console.log("si vemos esto es porque el Token fue validado");
       navigate("/home");
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else if (error.response.status === 401) {
+        setErrorMessage("Invalid username or password");
+      } else {
+        console.log(error);
+      }
     }
   };
   return (
@@ -59,6 +66,8 @@ function Signin() {
           Don't have an account? <NavLink to="/signup">Sign up now!</NavLink>
           </div>
           <div className="btn-container">
+          <br />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button >Login</button>
           </div>
         </form>

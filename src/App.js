@@ -16,6 +16,7 @@ import HelpContactPage from "./pages/HelpContactPage";
 import LogoHome from "./pages/LogoHome";
 import NotFound from "./pages/NotFound";
 import Error from "./pages/Error"
+import Home1 from "./pages/Home1";
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
 
         <Route path="/post/:id" element={<PostDetails />}/>
 
-        <Route path="/" element={<LogoHome />}/>
+        <Route path="/" element={<Home1 />}/>
+        <Route path="/starter" element={<LogoHome />}/>
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />}/>
 

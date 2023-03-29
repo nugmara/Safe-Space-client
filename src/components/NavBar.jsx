@@ -33,7 +33,7 @@ function NavBar() {
     return (
       <div className="nav-page">
      <nav>
-  {location.pathname !== "/signup" && location.pathname !== "/signin" && (
+  {location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/" && (
     <>
       <NavLink to="/home" className={checkActiveClass}>
         Home
@@ -72,7 +72,7 @@ function NavBar() {
   )}
 </nav>
 
-        {location.pathname !== "/information/help" && location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/profile/edit" && (
+        {location.pathname !== "/information/help" && location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/profile/edit" && location.pathname !== "/" && (
           <NavLink to="/post">
             <button
               type="button"

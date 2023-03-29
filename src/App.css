@@ -438,22 +438,6 @@
     color: black;
     font-size: 30px;
   }
-  /* .color-edit{
-    background: url(https://res.cloudinary.com/dhtrxjdas/image/upload/v1678995255/safe-space-app/9e1cd0849c3010cefb376e17586f8aae_xuxjpz.jpg);
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .color-edit:after {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.2);
-  } */
   /* no */
   .btn-container {
     margin-top: 20px;
@@ -518,13 +502,12 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    border: 2px solid black;
-    border: 10x solid black;
-    padding: 5px;
+    /* border: 2px solid black;
+    padding: 5px; */
     padding-bottom: 20px;
     margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
+    /* margin-right: 10px;
+    margin-left: 10px; */
     margin-bottom: 70px;
   }
 
@@ -592,10 +575,7 @@
     min-height: 100vh;
     position: relative;
   }
-  .logo-button {
-    border: none;
-    background: transparent;
-  }
+
   .logo-button img:first-child {
     position: absolute;
     top: 20%;
@@ -603,11 +583,13 @@
   }
   .btn-signup {
     position: absolute;
-    top: 65%;
+    top: 107%;
+    left: 37%;
   }
   .btn-login {
     position: absolute;
-    top: 75%;
+    top: 130%;
+    left: 39%;
   }
   .btn-container-sign button {
     padding: 10px;
@@ -646,5 +628,24 @@
     color: red;
     background-color: white;
     font-weight: bold;
+  }
+
+  /* LOGO home1 */
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .fadein img {
+    filter: grayscale(100%);
+    /* opacity: 0.5; */
+    transition: 1s ease;
+  }
+  .fadein img:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transition: 1s ease;
   }
 }

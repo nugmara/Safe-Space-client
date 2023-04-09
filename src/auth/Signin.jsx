@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { signinService } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
 import { NavLink, useNavigate } from "react-router-dom";
-import  { Button, InputGroup, InputRightElement } from "@chakra-ui/react"
+import  { Button, InputGroup, InputRightElement, useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faEyeSlash, faEye} from "@fortawesome/free-solid-svg-icons"
 
@@ -13,14 +13,12 @@ function Signin() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
     const [show, setShow] = useState(false);
+    const toast = useToast()
 
     const handleClickShowOrHide = () => setShow(!show)
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-
-  
-
     const userCredentials = {
       username,
       password,
@@ -33,20 +31,22 @@ function Signin() {
       console.log("si vemos esto es porque el Token fue validado");
       navigate("/home");
     } catch (error) {
-      if (error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage);
-      } else if (error.response.status === 401) {
-        setErrorMessage("Invalid username or password");
-      } else {
-        console.log(error)
-      }
+      const errorMessage = error.response?.data?.errorMessage || "An unknown error occurred.";
+      toast({
+        title: "Registration Failed",
+        description: errorMessage,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
     }
   };
   return (
     <div className="bg-image">
       <div className="content">
       <h2>Login</h2>
-        <form onSubmit={handleSignIn} className="signin">
+        <form className="signin">
           <div class="field-content">
             <span className="fa fa-user"></span>
             <input
@@ -82,8 +82,8 @@ function Signin() {
           </div>
           <div className="btn-container">
           <br />
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button>Login</button>
+          {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
+            <button onClick={handleSignIn}>Login</button>
           </div>
         </form>
       </div>

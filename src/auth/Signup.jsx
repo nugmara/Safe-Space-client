@@ -85,7 +85,7 @@ function Signup() {
       await signupService(newUser);
       navigate("/signin");
       toast({
-        title: "Registartion Succesful",
+        title: "Registration Succesful",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -111,18 +111,17 @@ function Signup() {
         <form >
           <div className="field-content">
             <span className="fa fa-user"></span>
-            <input
+            <Input
               type="text"
               name="username"
               placeholder="Username"
               value={username}
               onChange={handleUsername}
-              className="required"
-            />
+              />
           </div>
           <div className="field-content">
             <span className="fa fa-user-secret"></span>
-            <input
+            <Input
               type="text"
               placeholder="First Name"
               name="firstName"
@@ -132,7 +131,7 @@ function Signup() {
           </div>
           <div className="field-content">
             <span className="fa fa-user-circle"></span>
-            <input
+            <Input
               type="text"
               name="lastName"
               placeholder="Last Name"
@@ -142,7 +141,7 @@ function Signup() {
           </div>
           <div className="field-content">
             <span className="fa fa-envelope"></span>
-            <input
+            <Input
               type="email"
               name="email"
               placeholder="Email"
@@ -153,7 +152,7 @@ function Signup() {
           <div className="field-content">
             <span className="fa fa-lock"></span>
             <InputGroup>
-              <input
+              <Input
                 type={show ? "text" : "password"}
                 name="password"
                 placeholder="Password"
@@ -175,7 +174,8 @@ function Signup() {
             <Input type="file" 
             p={1.5}
             accept="image/"
-            onChange={(e) => imageDetails(e.target.files[0]) } />
+            onChange={(e) => imageDetails(e.target.files[0]) } 
+            />
           </FormControl>
                       </div>
           <div className="redirect">

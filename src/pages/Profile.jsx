@@ -20,6 +20,7 @@ function Profile() {
     try {
       const response = await getProfileDetailsService();
       setProfile(response.data);
+      console.log(response.data)
       setIsFollowing(response.data.isFollowing);
       setIsFetching(false);
     } catch (error) {

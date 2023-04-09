@@ -2,9 +2,9 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signupService } from "../services/auth.services";
 import Select from "react-select";
-import  { Button, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faEyeSlash, faEye} from "@fortawesome/free-solid-svg-icons"
+import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons"
 
 function Signup() {
   const navigate = useNavigate();
@@ -15,19 +15,61 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setShow] = useState(false);
-  const [image, setImage] = useState("");
+  const [image, setPic] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const toast = useToast()
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  const handleImage = (e) => {
-    setImage(e.target.getAttribute("src"));
-    handleCloseWhenSelectingAnImage();
-  };
   const handleClickShowOrHide = () => setShow(!show)
+
+  const imageDetails = (pics) => {
+    setLoading(true)
+    if (pics === undefined) {
+      toast({
+        title: "Please Select an image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      })
+      return;
+    }
+    if (pics.type === "image/jpeg" || pics.type === "image/png" || pics.type === "image/webp") {
+      const data = new FormData()
+      data.append("file", pics);
+      data.append("upload_preset", "safe-space-images")
+      data.append("cloud_name", "dhtrxjdas");
+      fetch("https://api.cloudinary.com/v1_1/dhtrxjdas/image/upload", {
+        method: "post",
+        body: data
+      })
+        .then((res) => res.json())
+        .then(data => {
+          setPic(data.url.toString());
+          console.log(data.url.toString())
+          setLoading(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          setLoading(false)
+        })
+    } else {
+      toast({
+        title: "Please Select an image!",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      })
+      setLoading(false);
+      return;
+    }
+  }
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -42,79 +84,31 @@ function Signup() {
     try {
       await signupService(newUser);
       navigate("/signin");
+      toast({
+        title: "Registartion Succesful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      })
     } catch (error) {
-      if(error.response.status === 400){
-        setErrorMessage(error.response.data.errorMessage)
+      const errorMessage = error.response?.data?.errorMessage || "An unknown error occurred.";
+      toast({
+        title: "Registration Failed",
+        description: errorMessage,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
     }
-  }
   };
-  const handleCloseWhenSelectingAnImage = (e) => {
-    e.preventDefault();
-    setImage(e.target.src);
-  };
-  const imageOptions = [
-    {
-      value: "avatar1",
-      label: (
-        <div>
-          <img
-            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-2_jamxw0.webp"
-            alt="ice-age"
-            width="70px"
-            onChange={handleImage}
-          />
-          <span>Holi</span>
-        </div>
-      ),
-    },
-    {
-      value: "avatar1",
-      label: (
-        <div>
-          <img
-            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-3_zzrpeh.webp"
-            alt="ice-age"
-            width="70px"
-            onChange={handleImage}
-          />{" "}
-          <span>Holi</span>
-        </div>
-      ),
-    },
-    {
-      value: "avatar1",
-      label: (
-        <div>
-          <img
-            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357944/safe-space-app/Ice-Age-Avatars-4_nl5y36.webp"
-            alt="ice-age"
-            width="70px"
-            onChange={handleImage}
-          />
-          <span>Holi</span>
-        </div>
-      ),
-    },
-    {
-      value: "avatar1",
-      label: (
-        <div>
-          <img
-            src="https://res.cloudinary.com/dhtrxjdas/image/upload/v1678357943/safe-space-app/Ice-Age-Avatars-5_vclyp2.webp"
-            alt="ice-age"
-            width="70px"
-            onChange={handleImage}
-          />
-          <span>Holi</span>
-        </div>
-      ),
-    },
-  ];
+ 
   return (
     <div className="bg-image">
       <div className="content">
         <h2>Sign up</h2>
-        <form onSubmit={handleSignup}>
+        <form >
           <div className="field-content">
             <span className="fa fa-user"></span>
             <input
@@ -159,33 +153,39 @@ function Signup() {
           <div className="field-content">
             <span className="fa fa-lock"></span>
             <InputGroup>
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={handlePassword}
-            />
-            <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClickShowOrHide}>
-            {show ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
-            </Button>
-            </InputRightElement>
-
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePassword}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClickShowOrHide} className="icon">
+                  {show ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                </Button>
+              </InputRightElement>
             </InputGroup>
           </div>
           <div className="avatar-title">
-            Choose your Avatar!
-            <Select options={imageOptions} />
-          </div>
+          <FormControl>
+          <FormLabel>
+          Upload your Avatar!
+          </FormLabel>
+            <Input type="file" 
+            p={1.5}
+            accept="image/"
+            onChange={(e) => imageDetails(e.target.files[0]) } />
+          </FormControl>
+                      </div>
           <div className="redirect">
-          Already have an account? <NavLink to="/signin">Log in!</NavLink>
+            Already have an account? <NavLink to="/signin">Log in!</NavLink>
           </div>
           <div className="btn-container">
-          <br />
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <br />
+            {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
 
-            <button>Sign up</button>  
+            <Button isLoading={loading} onClick={handleSignup}>Sign up</Button>
           </div>
         </form>
       </div>

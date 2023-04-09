@@ -626,7 +626,8 @@
   }
   .error-message {
     color: red;
-    background-color: white;
+    
+    background-color: transparent;
     font-weight: bold;
   }
 
@@ -647,5 +648,11 @@
     filter: grayscale(0);
     opacity: 1;
     transition: 1s ease;
+  }
+  .icon {
+    border: none;
+    margin-top: 7px;
+    margin-left: 20px;
+    background-color: transparent;
   }
 }

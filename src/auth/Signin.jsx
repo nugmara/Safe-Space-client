@@ -2,6 +2,9 @@ import { useState, useContext } from "react";
 import { signinService } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
 import { NavLink, useNavigate } from "react-router-dom";
+import  { Button, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {faEyeSlash, faEye} from "@fortawesome/free-solid-svg-icons"
 
 function Signin() {
   const navigate = useNavigate();
@@ -9,9 +12,14 @@ function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+    const [show, setShow] = useState(false);
+
+    const handleClickShowOrHide = () => setShow(!show)
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+
+  
 
     const userCredentials = {
       username,
@@ -52,14 +60,22 @@ function Signin() {
           </div>
           <div className="field-content">
             <span className="fa fa-lock"></span>
+            <InputGroup>
             <input
-              type="password"
+             type={show ? "text" : "password"}
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required=""
             />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClickShowOrHide} className="icon">
+                {show ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+              </Button>
+            </InputRightElement>
+
+            </InputGroup>
           </div>
           <div className="redirect">
           Don't have an account? <NavLink to="/signup">Sign up now!</NavLink>

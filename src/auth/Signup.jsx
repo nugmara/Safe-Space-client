@@ -2,6 +2,9 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signupService } from "../services/auth.services";
 import Select from "react-select";
+import  { Button, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {faEyeSlash, faEye} from "@fortawesome/free-solid-svg-icons"
 
 function Signup() {
   const navigate = useNavigate();
@@ -10,6 +13,8 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [show, setShow] = useState(false);
   const [image, setImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -22,6 +27,7 @@ function Signup() {
     setImage(e.target.getAttribute("src"));
     handleCloseWhenSelectingAnImage();
   };
+  const handleClickShowOrHide = () => setShow(!show)
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -34,7 +40,7 @@ function Signup() {
       image,
     };
     try {
-      const response = await signupService(newUser);
+      await signupService(newUser);
       navigate("/signin");
     } catch (error) {
       if(error.response.status === 400){
@@ -114,9 +120,10 @@ function Signup() {
             <input
               type="text"
               name="username"
-              placeholder="User name"
+              placeholder="Username"
               value={username}
               onChange={handleUsername}
+              className="required"
             />
           </div>
           <div className="field-content">
@@ -151,13 +158,21 @@ function Signup() {
           </div>
           <div className="field-content">
             <span className="fa fa-lock"></span>
+            <InputGroup>
             <input
-              type="password"
+              type={show ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={password}
               onChange={handlePassword}
             />
+            <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleClickShowOrHide}>
+            {show ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+            </Button>
+            </InputRightElement>
+
+            </InputGroup>
           </div>
           <div className="avatar-title">
             Choose your Avatar!

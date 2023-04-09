@@ -11,17 +11,15 @@ function SearchPage() {
   const [isFetching, setisFetching] = useState(true);
   const navigate = useNavigate()
 
-  const findUser = (user) => {
-    const foundUser = users.filter((eachUser) => {
-      let usersToLowercase = eachUser.username.toLowerCase();
-      let searchLowerCase = user.toLowerCase();
-      if (usersToLowercase.includes(searchLowerCase)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    setfindUsers(foundUser);
+  const findUser = async(user) => {
+    try {
+      const response = await searchUsersService(user)
+      console.log(response)
+      setfindUsers(response.data)
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
   const handleSearchInput = (e) => {
     const input = e.target.value
@@ -31,6 +29,7 @@ function SearchPage() {
     } else {
       setSearchUsers("");
       setUsers([]);
+      setfindUsers([]);
     }
   };
   useEffect(() => {
@@ -38,7 +37,7 @@ function SearchPage() {
   }, []);
   const getData = async () => {
     try {
-      const response = await searchUsersService()
+      const response = await searchUsersService(`?search=${searchUsers}`)
       setUsers(response.data);
       setisFetching(false);
     } catch (error) {

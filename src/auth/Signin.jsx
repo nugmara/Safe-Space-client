@@ -2,9 +2,9 @@ import { useState, useContext } from "react";
 import { signinService } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
 import { NavLink, useNavigate } from "react-router-dom";
-import  { Button, InputGroup, InputRightElement, useToast } from "@chakra-ui/react"
+import  { Button, Input, InputGroup, InputRightElement, useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faEyeSlash, faEye} from "@fortawesome/free-solid-svg-icons"
+import {faEyeSlash, faEye, faUser, faLock} from "@fortawesome/free-solid-svg-icons"
 
 function Signin() {
   const navigate = useNavigate();
@@ -48,8 +48,8 @@ function Signin() {
       <h2>Login</h2>
         <form className="signin">
           <div class="field-content">
-            <span className="fa fa-user"></span>
-            <input
+          <span><FontAwesomeIcon icon={faUser} /> </span>
+            <Input
               type="text"
               name="username"
               value={username}
@@ -59,9 +59,9 @@ function Signin() {
             />
           </div>
           <div className="field-content">
-            <span className="fa fa-lock"></span>
+          <span><FontAwesomeIcon icon={faLock} /></span>
             <InputGroup>
-            <input
+            <Input
              type={show ? "text" : "password"}
               name="password"
               value={password}

@@ -1,7 +1,7 @@
 import service from "./config.services";
 
-const searchUsersService = () => {
-  return service.get("/search")
+const searchUsersService = (query) => {
+  return service.get(`/search?search=${encodeURIComponent(query)}`)
 };
 
 export { searchUsersService }

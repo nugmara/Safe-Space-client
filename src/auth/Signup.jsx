@@ -2,9 +2,27 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signupService } from "../services/auth.services";
 import Select from "react-select";
-import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, useToast } from "@chakra-ui/react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons"
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  SelectField,
+  useToast,
+} from "@chakra-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEyeSlash,
+  faEye,
+  faUser,
+  faSignature,
+  faEnvelope,
+  faLock,
+  faOtter,
+} from "@fortawesome/free-solid-svg-icons";
+
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,22 +31,20 @@ function Signup() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [show, setShow] = useState(false);
   const [image, setPic] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const toast = useToast()
+  const toast = useToast();
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  const handleClickShowOrHide = () => setShow(!show)
+  const handleClickShowOrHide = () => setShow(!show);
 
   const imageDetails = (pics) => {
-    setLoading(true)
+    setLoading(true);
     if (pics === undefined) {
       toast({
         title: "Please Select an image!",
@@ -36,28 +52,32 @@ function Signup() {
         duration: 5000,
         isClosable: true,
         position: "bottom",
-      })
+      });
       return;
     }
-    if (pics.type === "image/jpeg" || pics.type === "image/png" || pics.type === "image/webp") {
-      const data = new FormData()
+    if (
+      pics.type === "image/jpeg" ||
+      pics.type === "image/png" ||
+      pics.type === "image/webp"
+    ) {
+      const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "safe-space-images")
+      data.append("upload_preset", "safe-space-images");
       data.append("cloud_name", "dhtrxjdas");
       fetch("https://api.cloudinary.com/v1_1/dhtrxjdas/image/upload", {
         method: "post",
-        body: data
+        body: data,
       })
         .then((res) => res.json())
-        .then(data => {
+        .then((data) => {
           setPic(data.url.toString());
-          console.log(data.url.toString())
-          setLoading(false)
+          console.log(data.url.toString());
+          setLoading(false);
         })
         .catch((err) => {
-          console.log(err)
-          setLoading(false)
-        })
+          console.log(err);
+          setLoading(false);
+        });
     } else {
       toast({
         title: "Please Select an image!",
@@ -65,11 +85,11 @@ function Signup() {
         duration: 5000,
         isClosable: true,
         position: "bottom",
-      })
+      });
       setLoading(false);
       return;
     }
-  }
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -90,9 +110,10 @@ function Signup() {
         duration: 5000,
         isClosable: true,
         position: "bottom",
-      })
+      });
     } catch (error) {
-      const errorMessage = error.response?.data?.errorMessage || "An unknown error occurred.";
+      const errorMessage =
+        error.response?.data?.errorMessage || "An unknown error occurred.";
       toast({
         title: "Registration Failed",
         description: errorMessage,
@@ -103,24 +124,28 @@ function Signup() {
       });
     }
   };
- 
+
   return (
     <div className="bg-image">
       <div className="content">
         <h2>Sign up</h2>
-        <form >
+        <form>
           <div className="field-content">
-            <span className="fa fa-user"></span>
+            <span>
+              <FontAwesomeIcon icon={faUser} />{" "}
+            </span>
             <Input
               type="text"
               name="username"
               placeholder="Username"
               value={username}
               onChange={handleUsername}
-              />
+            />
           </div>
           <div className="field-content">
-            <span className="fa fa-user-secret"></span>
+            <span>
+              <FontAwesomeIcon icon={faSignature} />{" "}
+            </span>
             <Input
               type="text"
               placeholder="First Name"
@@ -130,7 +155,9 @@ function Signup() {
             />
           </div>
           <div className="field-content">
-            <span className="fa fa-user-circle"></span>
+            <span>
+              <FontAwesomeIcon icon={faOtter} />
+            </span>
             <Input
               type="text"
               name="lastName"
@@ -140,7 +167,9 @@ function Signup() {
             />
           </div>
           <div className="field-content">
-            <span className="fa fa-envelope"></span>
+            <span>
+              <FontAwesomeIcon icon={faEnvelope} />{" "}
+            </span>
             <Input
               type="email"
               name="email"
@@ -150,7 +179,9 @@ function Signup() {
             />
           </div>
           <div className="field-content">
-            <span className="fa fa-lock"></span>
+            <span>
+              <FontAwesomeIcon icon={faLock} />
+            </span>
             <InputGroup>
               <Input
                 type={show ? "text" : "password"}
@@ -160,24 +191,32 @@ function Signup() {
                 onChange={handlePassword}
               />
               <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleClickShowOrHide} className="icon">
-                  {show ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+                <Button
+                  h="1.75rem"
+                  size="sm"
+                  onClick={handleClickShowOrHide}
+                  className="icon"
+                >
+                  {show ? (
+                    <FontAwesomeIcon icon={faEyeSlash} />
+                  ) : (
+                    <FontAwesomeIcon icon={faEye} />
+                  )}
                 </Button>
               </InputRightElement>
             </InputGroup>
           </div>
           <div className="avatar-title">
-          <FormControl>
-          <FormLabel>
-          Upload your Avatar!
-          </FormLabel>
-            <Input type="file" 
-            p={1.5}
-            accept="image/"
-            onChange={(e) => imageDetails(e.target.files[0]) } 
-            />
-          </FormControl>
-                      </div>
+            <FormControl>
+              <FormLabel>Upload your Avatar!</FormLabel>
+              <Input
+                type="file"
+                p={1.5}
+                accept="image/"
+                onChange={(e) => imageDetails(e.target.files[0])}
+              />
+            </FormControl>
+          </div>
           <div className="redirect">
             Already have an account? <NavLink to="/signin">Log in!</NavLink>
           </div>
@@ -185,7 +224,9 @@ function Signup() {
             <br />
             {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
 
-            <Button isLoading={loading} onClick={handleSignup}>Sign up</Button>
+            <Button isLoading={loading} onClick={handleSignup}>
+              Sign up
+            </Button>
           </div>
         </form>
       </div>

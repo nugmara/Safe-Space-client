@@ -104,12 +104,12 @@ function Home() {
               <div className="home-page-date">
                 <span>{new Date(eachPost.time).toLocaleString()}</span>
               </div>
-              <p className="post-username">
+              {/* <p className="post-username">
                 @
                 <span className="user-name-profile">
                   {eachPost.authorId.username}
                 </span>
-              </p>
+              </p> */}
               <Link to={`/post/${eachPost._id}`} className="link-post">
                 <p style={{ wordWrap: "break-word" }}>{eachPost.content}</p>
                 <br />
@@ -126,7 +126,7 @@ function Home() {
                     </button>
                   ) : (
                     <button
-                      className="heart-button"
+                      className={isClicked ? "heart-button" : ""}
                       onClick={() => handleLike(eachPost._id)}
                     >
                       <FontAwesomeIcon icon={faHeartCrack} />
@@ -135,6 +135,7 @@ function Home() {
                 </p>
               </div>
             </blockquote>
+            <hr />
           </div>
         );
       })}

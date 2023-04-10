@@ -155,10 +155,9 @@
   }
   .heart-button {
     border: none;
-    font-size: 17px;
+    
     background-color: transparent;
     transform-origin: center;
-    transition: transform 0.2s ease-in-out;
   }
   @keyframes zoom-in {
     0% { transform: scale(1); }
@@ -166,7 +165,8 @@
     100% { transform: scale(1); }
   }
   .heart-button:hover{
-    animation: zoom-in 1s ease-in-out;
+    
+    animation: zoom-in 0.5s ease-in-out;
     outline: none;
   }
   .home-page-date {
@@ -179,15 +179,15 @@
 
   /* POSTS */
   blockquote {
-    background: #f8f8ff;
-    border-left: 10px solid #aaaa;
+    /* background: #f8f8ff; */
+    /* border-left: 10px solid #aaaa; */
     margin-top: 20px;
     padding: 0.5em 10px;
     text-align: start;
-    border-bottom-left-radius: 15px 255px;
+    /* border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;
-    border-top-right-radius: 15px 255px;
+    border-top-right-radius: 15px 255px; */
   }
   .link-post {
     text-decoration: none;
@@ -265,15 +265,24 @@
   }
 
   /* COMMENTS */
+  .info-user-container {
+    display: flex;
+    
+  }
   .comments-username {
     color: #468388;
     font-weight: 300;
-    text-align: end;
+    text-align: start;
   }
+
   .comments-date {
     font-weight: lighter;
     border-bottom: 1px solid black;
     text-align: end;
+  }
+  .comments {
+    margin-left: 10px;
+    
   }
 
   /* BOTONES */
@@ -330,6 +339,10 @@
   }
   .profile-details-button-remove {
     margin-left: auto;
+    border: 1px solid;
+    background-color: white;
+    font-weight:100;
+    padding: 4px;
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 225px 15px;

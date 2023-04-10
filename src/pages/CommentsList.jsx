@@ -16,6 +16,7 @@ function CommentsList(props) {
   const getData = async () => {
     try {
       const response = await getAllComments(id);
+      console.log(response)
       setAllComments(response.data);
       setIsFetching(false);
     } catch (error) {
@@ -28,14 +29,20 @@ function CommentsList(props) {
  
   return (
     <div>
-    <h3>Comments</h3>
+    {/* <h3>Comments</h3> */}
       {resfreshingForComments.map((eachComment) => {
         return(
           <div key={eachComment._id}>
-            <p className="comments-username">@<span>{eachComment.author.username}</span> </p>
-            <p style={{wordWrap: "break-word"}}>{eachComment.content}</p>
-            <p className="comments-date">at {new Date(eachComment.time).toLocaleString()}</p>
-          </div>
+  <div className="info-user-container">
+    <img className="image-comments" src={eachComment.author.image} alt="" width="50px"/>
+    <div>
+      <p className="comments-username">@<span>{eachComment.author.username}</span></p>
+      <p className="comments" style={{wordWrap: "break-word"}}>{eachComment.content}</p>
+    </div>
+  </div>
+  <p className="comments-date">at {new Date(eachComment.time).toLocaleString()}</p>
+</div>
+
         )
       })}
     </div>

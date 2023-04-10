@@ -214,6 +214,7 @@ function Signup() {
                 p={1.5}
                 accept="image/"
                 onChange={(e) => imageDetails(e.target.files[0])}
+                
               />
             </FormControl>
           </div>

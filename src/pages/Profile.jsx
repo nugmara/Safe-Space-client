@@ -84,7 +84,7 @@ function Profile() {
                 </div>
                 <div className="profile-details-container">
                   <p className="profile-details-likes">
-                    {eachPost.totalLikes}❤️
+                    {eachPost.likes.length}❤️
                   </p>
                   <button
                     onClick={() => handleDelete(eachPost._id)}

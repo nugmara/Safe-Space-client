@@ -8,19 +8,26 @@ import {
   getDetailsFromAPost,
   likeAPost,
 } from "../services/post.services";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faHeartCrack,
+  faHeart,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
-  const [isLiked, setisLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const { loggedUser } = useContext(AuthContext);
-  const params = useParams()
-  const { id } = params
-  const navigate = useNavigate()
-
+  const params = useParams();
+  const { id } = params;
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
+    // getLikedPosts();
   }, []);
 
   const getData = async () => {
@@ -29,10 +36,58 @@ function Home() {
       setallPosts(response.data);
       setIsFetching(false);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-  
+
+  // const getLikedPosts = async () => {
+  //   try {
+  //     const response = await likeAPost();
+  //     setIsLiked(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleLike = async (postId) => {
+    try {
+      await likeAPost(postId);
+      setIsClicked(true)
+      setallPosts((posts) =>
+        posts.map((aPost) =>
+          aPost._id === postId
+            ? { ...aPost, likes: [...aPost.likes, loggedUser._id] }
+            : aPost
+        )
+      );
+      setIsLiked((prev) => [...prev, postId]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteLike = async (postId) => {
+    try {
+      await deleteALikeService(postId);
+      setIsClicked(true)
+      setallPosts((posts) =>
+        posts.map((aPost) =>
+          aPost._id === postId
+            ? {
+                ...aPost,
+                likes: aPost.likes.filter(
+                  (userId) => userId !== loggedUser._id
+                ),
+              }
+            : aPost
+        )
+      );
+      setIsLiked((prev) => prev.filter((id) => id !== postId));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (isFetching) {
     return <h3>Loading...</h3>;
   }
@@ -40,12 +95,7 @@ function Home() {
   return (
     <div className="home-container">
       <h3 className="logo-image-home">
-        <img
-          src="../../JUST-LOGO-removebg-preview.png"
-          alt="logo"
-          width="90px"
-          
-        />
+        <FontAwesomeIcon icon={faBars} style={{ color: "#090a0c" }} />
       </h3>
       {allPosts.map((eachPost) => {
         return (
@@ -67,13 +117,19 @@ function Home() {
               <div className="like-post">
                 <p className="likes">
                   {eachPost.likes.length}
-                  {isLiked ? (
-                    <button className="heart-button" onClick={undefined}>
-                      ❥
+                  {eachPost.likes.includes(loggedUser._id) ? (
+                    <button
+                      className={isClicked ? "heart-button" : ""}
+                      onClick={() => handleDeleteLike(eachPost._id)}
+                    >
+                      <FontAwesomeIcon icon={faHeart} />
                     </button>
                   ) : (
-                    <button className="heart-button" onClick={undefined}>
-                      ❥
+                    <button
+                      className="heart-button"
+                      onClick={() => handleLike(eachPost._id)}
+                    >
+                      <FontAwesomeIcon icon={faHeartCrack} />
                     </button>
                   )}
                 </p>

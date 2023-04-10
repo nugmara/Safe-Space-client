@@ -77,7 +77,7 @@ function PostDetails() {
             <p className="post-detail-date">
               {new Date(postDetail.time).toLocaleString()}
             </p>
-            <p className="post-detail-likes">{postDetail.totalLikes}<button className="heart-button">❥</button></p>
+            <p className="post-detail-likes">{postDetail.likes.length}<button className="heart-button">❥</button></p>
             <hr />
             <CommentsList resfreshingForComments={resfreshingForComments}/>
             <form className="add-comments">

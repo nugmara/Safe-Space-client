@@ -266,13 +266,13 @@
 
   /* COMMENTS */
   .info-user-container {
-    display: flex;
-    
+    /* display: flex; */
   }
   .comments-username {
     color: #468388;
     font-weight: 300;
     text-align: start;
+    margin-left: 5px;
   }
 
   .comments-date {
@@ -280,9 +280,13 @@
     border-bottom: 1px solid black;
     text-align: end;
   }
+  .image-comments {
+    margin-top: 5px;
+    height: 40px;
+  }
   .comments {
     margin-left: 10px;
-    
+    margin-top: -10px;
   }
 
   /* BOTONES */

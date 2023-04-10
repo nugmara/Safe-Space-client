@@ -28,16 +28,17 @@ function CommentsList(props) {
   }
  
   return (
-    <div>
+    <blockquote>
     {/* <h3>Comments</h3> */}
       {resfreshingForComments.map((eachComment) => {
         return(
           <div key={eachComment._id}>
   <div className="info-user-container">
-    <img className="image-comments" src={eachComment.author.image} alt="" width="50px"/>
-    <div>
-      <p className="comments-username">@<span>{eachComment.author.username}</span></p>
-      <p className="comments" style={{wordWrap: "break-word"}}>{eachComment.content}</p>
+    <img className="image-comments" src={eachComment.author.image} alt="" width="40px" style={{ float: 'left', marginRight: '10px' }} />
+    <div style={{ overflow: 'hidden' }}>
+      <p className="comments-username" >@<span>{eachComment.author.username}</span></p>
+      <p style={{ wordWrap: "break-word"}} className="comments" >{eachComment.content}</p>
+      <br />
     </div>
   </div>
   <p className="comments-date">at {new Date(eachComment.time).toLocaleString()}</p>
@@ -45,7 +46,7 @@ function CommentsList(props) {
 
         )
       })}
-    </div>
+    </blockquote>
   );
 }
 

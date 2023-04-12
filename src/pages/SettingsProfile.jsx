@@ -71,6 +71,7 @@ function SettingsProfile() {
               type="text"
               name="description"
               value={description}
+              maxlength="140"
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>

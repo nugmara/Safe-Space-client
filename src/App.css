@@ -63,14 +63,14 @@
   header {
     border-bottom: 1px solid white;
     width: 483.200px;
-    height: 330px;
+    height: 350px;
   }
 
   .profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: static;
+    position: relative;
   }
   
   .profile-header {
@@ -135,7 +135,7 @@
   
   .followers-profile {
     position: absolute;
-    top: 270px;
+    top: 300px;
     right: 5%;
     color: white;
     margin-top: 10px;
@@ -188,7 +188,7 @@
     justify-content: space-between;
     flex: 1;
     color: white;
-    position: relative;
+    /* position: relative; */
     /* z-index: 1; */
   }
   .post-profile-container:last-of-type {

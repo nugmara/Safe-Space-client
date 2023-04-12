@@ -1,17 +1,19 @@
 import { useEffect, useState, useContext } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { followUser } from "../services/following.services";
 import { getProfileDetailsService } from "../services/profile.services";
 import { deleteAPost } from "../services/post.services";
 import { getUserId } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   const { loggedUser } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -20,19 +22,19 @@ function Profile() {
     try {
       const response = await getProfileDetailsService();
       setProfile(response.data);
-      console.log(response.data)
+      console.log(response.data);
       setIsFollowing(response.data.isFollowing);
       setIsFetching(false);
     } catch (error) {
-    console.log(error)
+      console.log(error);
     }
   };
   const handleDelete = async (id) => {
     try {
       await deleteAPost(id);
-      getData()
+      getData();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -41,7 +43,14 @@ function Profile() {
         <h3>Loading...</h3>
       ) : (
         <div>
-          <div className="profile-container">
+          <header className="profile-container">
+            <div className="profile-header">
+              <img
+                className="image-header"
+                src={profile.profileDetails.headerImage}
+                alt="header-image"
+              />
+            </div>
             <div className="profile-left">
               <div className="username-profile">
                 <h4>
@@ -49,25 +58,40 @@ function Profile() {
                   {profile.profileDetails.username}
                 </h4>
               </div>
-              <div className="first-last-name">
+              {/* <div className="first-last-name">
                 <p>
                   {profile.profileDetails.firstName}{" "}
                   {profile.profileDetails.lastName}
                 </p>
+              </div> */}
+              <div
+                className="description-container"
+                style={{ wordWrap: "break-word" }}
+              >
+                <p className="description-profile">
+                  {profile.profileDetails.description}
+                </p>
               </div>
-              <p className="followers-profile">Followers: {profile.profileDetails.totalFollowers}</p>
-              <p className="description-profile">{profile.profileDetails.description}</p>
+              <div className="edit-profile-button">
+                <Link to="/profile/edit">Edit profile</Link>
+              </div>
+              <p className="followers-profile">
+                <span className="numbers-of-followers">
+                  {profile.profileDetails.totalFollowers}
+                </span>{" "}
+                Followers
+                <span className="numbers-of-followers"> 0</span> Following
+              </p>
             </div>
             <div className="profile-right">
               <img
                 src={profile.profileDetails.image}
                 alt="profile-picture"
-                width="150px"
                 className="image-profile"
               />
             </div>
-          </div>
-          <hr />
+            <hr />
+          </header>
           {profile.postOfTheUser.map((eachPost) => {
             return (
               <blockquote key={eachPost._id} className="profile-blockquote">

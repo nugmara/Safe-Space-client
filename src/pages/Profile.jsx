@@ -42,7 +42,7 @@ function Profile() {
       {isFetching ? (
         <h3>Loading...</h3>
       ) : (
-        <div>
+        <div >
           <header className="profile-container">
             <div className="profile-header">
               <img
@@ -90,34 +90,33 @@ function Profile() {
                 className="image-profile"
               />
             </div>
-            <hr />
+            <hr /> 
           </header>
           {profile.postOfTheUser.map((eachPost) => {
             return (
-              <blockquote key={eachPost._id} className="profile-blockquote">
-                <div className="profile-container-wrapper">
-                  <p
-                    className="profile-content"
-                    style={{ wordWrap: "break-word" }}
-                  >
+              <div key={eachPost._id} className="post-profile-container">
+                <div className="avatar-container">
+                  {/* <img src={profile.profileDetails.image} alt="" width="40px" /> */}
+                </div>
+                <div className="post-profile-content">
+                  <div className="post-header">
+                    {/* <h2 className="post-profile-username">@{profile.profileDetails.username}</h2> */}
+                    <span className="post-time">
+                      {new Date(eachPost.time).toLocaleString()}
+                    </span>
+                  </div>
+                  <p className="post-text" style={{ wordWrap: "break-word" }}>
                     {eachPost.content}
                   </p>
-                  <p className="profile-date">
-                    {new Date(eachPost.time).toLocaleString()}
-                  </p>
+                  <div className="post-footer">
+                    <span className="post-likes">
+                      {eachPost.likes.length}❤️
+                    </span>
+                    <button className="post-delete-button" onClick={() => handleDelete(eachPost._id)}>Delete</button>
+                  </div>
+              <hr />
                 </div>
-                <div className="profile-details-container">
-                  <p className="profile-details-likes">
-                    {eachPost.likes.length}❤️
-                  </p>
-                  <button
-                    onClick={() => handleDelete(eachPost._id)}
-                    className="profile-details-button-remove"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </blockquote>
+              </div>
             );
           })}
         </div>

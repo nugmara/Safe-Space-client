@@ -197,4 +197,4 @@ The url to your repository and to your deployed project
 
 The url to your presentation slides
 
-[Slides Link](https://docs.google.com/presentation/d/1b5fEBRB_W34ImcXpYAofZE-2KfVfnDKf/edit?usp=sharing&ouid=102181827856456085623&rtpof=true&sd=true)
+[Slides Link](https://www.canva.com/design/DAFfID-Om_c/foi3qYGK69WcgQE56yWnUg/view?utm_content=DAFfID-Om_c&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu)

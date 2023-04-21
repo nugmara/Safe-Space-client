@@ -96,7 +96,7 @@ function Profile() {
             return (
               <div key={eachPost._id} className="post-profile-container">
                 <div className="avatar-container">
-                  {/* <img src={profile.profileDetails.image} alt="" width="40px" /> */}
+                  <img src={profile.profileDetails.image} alt="" width="40px" />
                 </div>
                 <div className="post-profile-content">
                   <div className="post-header">

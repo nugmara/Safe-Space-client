@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
 import {
@@ -13,6 +13,7 @@ import {
   faBars,
   faHeartCrack,
   faHeart,
+  faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
@@ -94,9 +95,9 @@ function Home() {
 
   return (
     <div className="home-container">
-      <h3 className="logo-image-home">
-        <FontAwesomeIcon icon={faBars} style={{ color: "#090a0c" }} />
-      </h3>
+      <div className="logo-image-home">
+        <span>LOGO</span>
+      </div>
       {allPosts.map((eachPost) => {
         return (
           <div key={eachPost._id} className="home-page">

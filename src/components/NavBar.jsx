@@ -3,8 +3,18 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
 import { getUserId } from "../services/auth.services";
 import { NavDropdown } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faBrain,
+  faPuzzlePiece,
+  faMagnifyingGlass,
+  faGhost,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
 
 function NavBar() {
+  
   const location = useLocation();
   const checkActiveClass = (navInfo) => {
     if (navInfo.isActive === true) {
@@ -32,56 +42,75 @@ function NavBar() {
   {
     return (
       <div className="nav-page">
-     <nav>
-  {location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/" && (
-    <>
-      <NavLink to="/home" className={checkActiveClass}>
-        Home
-      </NavLink>
-      <NavDropdown
-        title="Profile"
-        id="basic-nav-dropdown"
-        className="checkActiveClass nav-link nav-dropdown"
-      >
-        <NavDropdown.Item href={`/profile`} className={checkActiveClass}>
-          My Profile
-        </NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item
-          className={checkActiveClass}
-          href={`/profile/edit`}
-        >
-          Settings
-        </NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item
-          onClick={handleLogout}
-          className={checkActiveClass}
-          href="/"
-        >
-          Logout
-        </NavDropdown.Item>
-      </NavDropdown>
-      <NavLink to="/search" className={checkActiveClass}>
-        Search
-      </NavLink>
-      <NavLink to="/information/help" className={checkActiveClass}>
-        Help Center
-      </NavLink>
-    </>
-  )}
-</nav>
+        <nav>
+          {location.pathname !== "/signup" &&
+            location.pathname !== "/signin" &&
+            location.pathname !== "/" && (
+              <>
+                <NavLink to="/home" className={checkActiveClass}>
+                  <FontAwesomeIcon
+                    icon={faHouse}
+                    style={{ color: "#0a0a0b" }}
+                  />
+                </NavLink>
+                {/* <NavDropdown
+                  title="Profile"
+                  id="basic-nav-dropdown"
+                  className="checkActiveClass nav-link nav-dropdown"
+                > */}
+                  {/* <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    className={checkActiveClass}
+                    href={`/profile/edit`}
+                  >
+                    Settings
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    onClick={handleLogout}
+                    className={checkActiveClass}
+                    href="/"
+                  >
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown> */}
+                {/* <NavLink to="/information/help" className={checkActiveClass}>
+      <FontAwesomeIcon icon={faBrain} style={{color: "#060709",}} />   </NavLink> */}
+                <NavLink>
+                  <FontAwesomeIcon
+                    icon={faGhost}
+                    style={{ color: "#090a0b" }}
+                  />
+                </NavLink>
+                <NavLink to="/post">
+                  <FontAwesomeIcon icon={faPuzzlePiece} style={{color: "#060505", fontSize: "2rem"}} />
+                </NavLink>
+                <NavLink to="/search" className={checkActiveClass}>
+                  <FontAwesomeIcon
+                    icon={faMagnifyingGlass}
+                    style={{ color: "#08090d" }}
+                  />
+                </NavLink>
+                  <NavLink
+                    to="/profile"
+                    className={checkActiveClass}
+                  >
+                  <FontAwesomeIcon icon={faUser} style={{color: "#0b0c0f",}} />
+                  </NavLink>
+              </>
+            )}
+        </nav>
 
-        {location.pathname !== "/information/help" && location.pathname !== "/signup" && location.pathname !== "/signin" && location.pathname !== "/profile/edit" && location.pathname !== "/" && (
-          <NavLink to="/post">
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-              className="btn-add-post fa fa-pen"
-            ></button>
-          </NavLink>
-        )}
+        {location.pathname !== "/information/help" &&
+          location.pathname !== "/signup" &&
+          location.pathname !== "/signin" &&
+          location.pathname !== "/profile/edit" &&
+          location.pathname !== "/" && (
+            <NavLink to="/information/help" className="btn-add-post ">
+            <FontAwesomeIcon icon={faBrain} style={{color: "#040506",}}/>
+              {" "}
+            </NavLink>
+          )}
       </div>
     );
   }

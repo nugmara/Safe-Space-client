@@ -22,23 +22,24 @@
   nav a {
     color: black;
     font-weight: bold;
-    padding: 10px;
+    padding: 3px;
+   
   }
-  nav a:hover {
+  /* nav a:hover {
     background-color: #FEF6DB;
     color: white;
     border-radius: 70px;
-  }
+  } */
   nav a.nav-inactive {
     text-decoration: none;
   }
 
   nav a.nav-active {
     /* background-color: #FEF6DB; */
-    font-size: 1.3rem;
+    /* font-size: 1.3rem; */
     /* border: 3px solid #FEF6DB; */
-    color: white;
-    text-decoration: none;
+    /* color: white;
+    text-decoration: none; */
   }
   .nav-dropdown .dropdown-toggle {
     color: black;
@@ -57,6 +58,16 @@
     color: gray;
   }
 
+  .puzzle {
+    border: 1px solid none;
+    padding: 7px 10px 7px 10px;
+    border-radius: 5px;
+    background-color: black;
+    /* box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6); */
+  }
+  .puzzle:hover {
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6);
+  }
   /* PROFILE */
 
   /* .firstHr {

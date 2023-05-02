@@ -14,10 +14,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function NavBar() {
-  
+  const [isClicked, setIsClicked] = useState(false);
+
   const location = useLocation();
   const checkActiveClass = (navInfo) => {
-    if (navInfo.isActive === true) {
+    if (isClicked && location.pathname === navInfo.to) {
       return "nav-active";
     } else {
       return "nav-inactive";
@@ -25,6 +26,7 @@ function NavBar() {
   };
 
   const navigate = useNavigate();
+
   const [userId, setUserId] = useState("");
   useEffect(() => {
     getData();
@@ -47,10 +49,10 @@ function NavBar() {
             location.pathname !== "/signin" &&
             location.pathname !== "/" && (
               <>
-                <NavLink to="/home" className={checkActiveClass}>
+              <NavLink to="/home" className={checkActiveClass({ isActive: true, to: "/home" })} onClick={() => setIsClicked(true)}>
                   <FontAwesomeIcon
                     icon={faHouse}
-                    style={{ color: "#0a0a0b" }}
+                    style={{ color: isClicked && location.pathname === "/home" ? "#000000" : "#808080" }}
                   />
                 </NavLink>
                 {/* <NavDropdown
@@ -76,26 +78,26 @@ function NavBar() {
                 </NavDropdown> */}
                 {/* <NavLink to="/information/help" className={checkActiveClass}>
       <FontAwesomeIcon icon={faBrain} style={{color: "#060709",}} />   </NavLink> */}
-                <NavLink>
+                <NavLink className={checkActiveClass({ isActive: true, to: "/undefined" })} onClick={() => setIsClicked(true)}>
                   <FontAwesomeIcon
                     icon={faGhost}
-                    style={{ color: "#090a0b" }}
+                    style={{ color: isClicked && location.pathname === "/undefined" ? "#000000" : "#808080"  }}
                   />
                 </NavLink>
-                <NavLink to="/post">
-                  <FontAwesomeIcon icon={faPuzzlePiece} style={{color: "#060505", fontSize: "2rem"}} />
+                <NavLink to="/post" className={checkActiveClass({ isActive: true, to: "/post" })} onClick={() => setIsClicked(true)}>
+                  <FontAwesomeIcon className="puzzle" icon={faPuzzlePiece} style={{color: isClicked && location.pathname === "/post" ? "#ffffff" : "#ffffff"}} />
                 </NavLink>
-                <NavLink to="/search" className={checkActiveClass}>
+                <NavLink to="/search" className={checkActiveClass({ isActive: true, to: "/search" })} onClick={() => setIsClicked(true)}>
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
-                    style={{ color: "#08090d" }}
+                    style={{ color: isClicked && location.pathname === "/search" ? "#000000" : "#808080" }}
                   />
                 </NavLink>
                   <NavLink
                     to="/profile"
-                    className={checkActiveClass}
-                  >
-                  <FontAwesomeIcon icon={faUser} style={{color: "#0b0c0f",}} />
+                    className={checkActiveClass({ isActive: true, to: "/profile" })} onClick={() => setIsClicked(true)}>
+                  
+                  <FontAwesomeIcon icon={faUser} style={{color: isClicked && location.pathname === "/profile" ? "#000000" : "#808080"}} />
                   </NavLink>
               </>
             )}

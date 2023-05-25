@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { createAComment, getAllComments } from "../services/comments.services";
 import { getDetailsFromAPost } from "../services/post.services";
-import { getUserId } from "../services/auth.services";
-
+// import { getUserId } from "../services/auth.services";
 import CommentsList from "./CommentsList";
 import { AuthContext } from "../context/auth.context";
+import { PacmanLoader } from "react-spinners";
+
 
 function PostDetails() {
   const params = useParams();
@@ -50,7 +51,7 @@ function PostDetails() {
       author: loggedUser,
     };
     try {
-      const response = await createAComment(id, newComment);
+       await createAComment(id, newComment);
        handleComments()
     } catch (error) {
       console.log(error)
@@ -60,7 +61,7 @@ function PostDetails() {
   return (
     <div>
       {isFetching ? (
-        <h3>Loading...</h3>
+        <PacmanLoader color="#36d7b7" />
       ) : (
         <div className="title-post-details">
           <h2 className="title-post-details">Thread</h2>

@@ -86,18 +86,22 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    width:100vw;;
   }
   
   .profile-header {
     position: relative;
-    width: 100%;
-    height: 200px;
+    /* width: 100vw; */
+    height: 100vh;
+    /* overflow: hidden; */
   }
   
   .image-header {
-    margin-top: 0px;
-    width: 100%;
-    height: 150px;
+    position: relative;
+    /* left: -15%; */
+    border-radius: 50%;
+    height: 80vh;
+    width: 140vw;
     object-fit: cover;
   }
   
@@ -127,6 +131,7 @@
     position: absolute;
     top: 230px;
     right: 5%;
+    background-color: transparent;
   }
   
   .description-profile {
@@ -169,13 +174,13 @@
   }
   
   .image-profile {
-    border: 5px solid black; 
-    border-radius: 20px;
+    border: 2px solid white; 
+    border-radius: 50px;
     height: 100px;
     width: 100px;
     position: relative;
     z-index: 1;
-    margin-top: -75px;
+    margin-top: -20px;
     object-fit: cover;
   }
   

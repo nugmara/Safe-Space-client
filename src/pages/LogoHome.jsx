@@ -5,14 +5,14 @@ function LogoHome() {
     <div className="App Appi just-logo bg-image">
     
       <div className="content">
-      <p>cFEYBHDSJKKFHGEDAWSJILDHFKKSJKLF <br />
-      ftghkj.gkfjdhsetdrfghkhkgftdrhtyugkil <br />
-      jchgghkjkhgkfguhugyufkfuygilhu <br />
-      asdfghjklkjhgfdsaASDFGHJKJHGFD <br />
-      sdfghjkjhgfdfghjkjhgfdfghjkjhgffghj <br />
-      dfghjkjhgfdfghjkjhgfdfghj <br />
-      sdfghjhgfdsdfgh <br />
-
+      <p>Our platform offers free support<br />
+      from mental health professionals to<br />
+      ensure accessibility for all <br />
+      individuals, regardless of their <br />
+      The application provides a safe and<br />
+      non-judgemental space for individuals<br />
+      to share their experiences and seek <br />
+      professional help. <br />
       </p>
       
          {/* <img

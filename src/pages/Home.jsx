@@ -16,12 +16,10 @@ import { PacmanLoader } from "react-spinners";
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
-  const [isLiked, setIsLiked] = useState([]);
+  const [isLiked, setIsLiked] = useState([]); // repasar esto
   const [isClicked, setIsClicked] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
   const { loggedUser } = useContext(AuthContext);
-  const params = useParams();
-  const { id } = params;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,7 +76,7 @@ function Home() {
   };
 
   if (isFetching) {
-    <PacmanLoader color="#36d7b7" />
+    return <PacmanLoader color="#36d7b7" />
   }
 
   return (

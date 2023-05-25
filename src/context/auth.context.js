@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { verifyService } from "../services/auth.services";
+import { PacmanLoader } from "react-spinners";
 
 const AuthContext = createContext();
 
@@ -11,7 +12,7 @@ function AuthWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedUser, setLoggedUser] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate() // navigación a errores sin implementar
   //funciones de auth
   // 1. Esta función va a contactar al BE para validar el Toekn
   const authenticateUser = async () => {
@@ -43,7 +44,7 @@ function AuthWrapper(props) {
   if (isFetching) {
     return (
       <div className="App">
-        <h2>Validando credenciales...</h2>
+        <PacmanLoader color="#36d7b7" />
       </div>
     );
   }

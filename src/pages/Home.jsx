@@ -1,20 +1,18 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { getUserId } from "../services/auth.services";
 import {
   deleteALikeService,
   getAllPostsService,
-  getDetailsFromAPost,
   likeAPost,
 } from "../services/post.services";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars,
   faHeartCrack,
   faHeart,
-  faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
+import { PacmanLoader } from "react-spinners";
+
 
 function Home() {
   const [allPosts, setallPosts] = useState(null);
@@ -28,7 +26,6 @@ function Home() {
 
   useEffect(() => {
     getData();
-    // getLikedPosts();
   }, []);
 
   const getData = async () => {
@@ -41,22 +38,13 @@ function Home() {
     }
   };
 
-  // const getLikedPosts = async () => {
-  //   try {
-  //     const response = await likeAPost();
-  //     setIsLiked(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleLike = async (postId) => {
     try {
       await likeAPost(postId);
       setIsClicked(true)
       setallPosts((posts) =>
         posts.map((aPost) =>
-          aPost._id === postId
+          aPost._id ===  postId
             ? { ...aPost, likes: [...aPost.likes, loggedUser._id] }
             : aPost
         )
@@ -90,7 +78,7 @@ function Home() {
   };
 
   if (isFetching) {
-    return <h3>Loading...</h3>;
+    <PacmanLoader color="#36d7b7" />
   }
 
   return (
@@ -105,12 +93,6 @@ function Home() {
               <div className="home-page-date">
                 <span>{new Date(eachPost.time).toLocaleString()}</span>
               </div>
-              {/* <p className="post-username">
-                @
-                <span className="user-name-profile">
-                  {eachPost.authorId.username}
-                </span>
-              </p> */}
               <Link to={`/post/${eachPost._id}`} className="link-post">
                 <p style={{ wordWrap: "break-word" }}>{eachPost.content}</p>
                 <br />

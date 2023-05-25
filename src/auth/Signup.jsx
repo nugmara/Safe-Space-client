@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signupService } from "../services/auth.services";
-import Select from "react-select";
 import {
   Button,
   FormControl,
@@ -9,7 +8,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  SelectField,
   useToast,
 } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,16 +21,15 @@ import {
   faOtter,
 } from "@fortawesome/free-solid-svg-icons";
 
-
 function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setPic] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-  const [image, setPic] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
 
@@ -41,6 +38,7 @@ function Signup() {
   const handleLastName = (e) => setLastName(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
+
   const handleClickShowOrHide = () => setShow(!show);
 
   const imageDetails = (pics) => {
@@ -214,7 +212,6 @@ function Signup() {
                 p={1.5}
                 accept="image/"
                 onChange={(e) => imageDetails(e.target.files[0])}
-                
               />
             </FormControl>
           </div>
@@ -223,8 +220,6 @@ function Signup() {
           </div>
           <div className="btn-container">
             <br />
-            {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
-
             <Button isLoading={loading} onClick={handleSignup}>
               Sign up
             </Button>

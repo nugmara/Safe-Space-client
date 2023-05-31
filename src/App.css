@@ -70,15 +70,10 @@
   }
   /* PROFILE */
 
-  /* .firstHr {
-    border-top: 1px solid white;
-    overflow: visible;
-  }  */
-
   header {
     border-bottom: 1px solid white;
     width: 483.200px;
-    height: 350px;
+    height: 250px;
   }
 
   .profile-container {
@@ -86,7 +81,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    width:100vw;;
+    width:100vw;
   }
   
   .profile-header {
@@ -98,22 +93,21 @@
   
   .image-header {
     position: relative;
-    /* left: -15%; */
-    border-radius: 50%;
-    height: 80vh;
-    width: 140vw;
+    margin-top: 0;
+    height: 20vh;
+    width: 100vw;
     object-fit: cover;
   }
   
   .username-profile {
     position: absolute;
-    top: 200px;
+    top: 170px;
     right: 5%;
   }
   
   .username-profile h4 {
     margin: 0;
-    color: white;
+    color: black;
   }
   
   .first-last-name {
@@ -129,17 +123,17 @@
   
   .description-container {
     position: absolute;
-    top: 230px;
-    right: 5%;
+    top: 20px;
+    left: 10px;
     background-color: transparent;
   }
   
   .description-profile {
     margin: 0;
-    color: #F9F3F3;
-    text-align: end;
+    color: black;
+    text-align: start;
     font-weight: 200;
-    max-width: 400px;
+    max-width: 1000px;
   }
 
   .edit-profile-button {
@@ -149,15 +143,15 @@
     border-radius: 15px;
     color: white;
     font-weight: 500;
-    top: 170px;
-    left: 20px;
+    top: 140px;
+    left: 15px;
   }
   
   .followers-profile {
     position: absolute;
-    top: 300px;
-    right: 5%;
-    color: white;
+    top: 185px;
+    left: 3%;
+    color: black;
     margin-top: 10px;
   }
   
@@ -174,13 +168,13 @@
   }
   
   .image-profile {
-    border: 2px solid white; 
-    border-radius: 50px;
+    border: 6px solid white; 
+    border-radius: 10px;
     height: 100px;
     width: 100px;
     position: relative;
     z-index: 1;
-    margin-top: -20px;
+    margin-top: -100px;
     object-fit: cover;
   }
   
@@ -191,15 +185,18 @@
     margin-bottom: -30px;
     padding: 5px;
     border-radius: 10px;
-    background-color: black;
+    background-color: white;
   }
   
   .avatar-container {
     margin-right: 10px;
+    margin-top: -20px;
   }
 
   .avatar-container img {
-    border-radius: 10px;
+    border-radius: 5px;
+    width: 30px;
+    height: 35px;
   }
   
   .post-profile-content {
@@ -207,7 +204,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    color: white;
+    color: black;
     /* position: relative; */
     /* z-index: 1; */
   }
@@ -227,17 +224,20 @@
     margin-right: 10px;
     margin-top: 10px;
     font-weight: bold;
+    color: black;
   }
   
   .post-time {
     margin-left: 350px;
     font-size: 12px;
-    color:#F9F3F3;
+    color: black;
+    display: none;
   }
   
   .post-text {
     margin-bottom: 5px;
     text-align: start;
+    margin-top: -20px;
   }
   
   .post-footer {
@@ -254,12 +254,13 @@
   
   .post-delete-button {
     border: none;
-    background-color: black;
-    color: red;
+    margin-right: 10px;
+   background-color: transparent; 
     cursor: pointer;
   }
   .post-delete-button:hover {
-    text-decoration: underline;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.6);
+    background-color: transparent;
   }
 
   /* HOME */

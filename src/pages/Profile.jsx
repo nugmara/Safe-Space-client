@@ -6,7 +6,7 @@ import { deleteAPost } from "../services/post.services";
 import { getUserId } from "../services/auth.services";
 import { AuthContext } from "../context/auth.context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   const { loggedUser } = useContext(AuthContext);
@@ -112,7 +112,7 @@ function Profile() {
                     <span className="post-likes">
                       {eachPost.likes.length}❤️
                     </span>
-                    <button className="post-delete-button" onClick={() => handleDelete(eachPost._id)}>Delete</button>
+                    <button className="post-delete-button" onClick={() => handleDelete(eachPost._id)}><FontAwesomeIcon icon={faTrash} style={{color: "#050506",}} /></button>
                   </div>
               <hr />
                 </div>
